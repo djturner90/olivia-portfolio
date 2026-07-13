@@ -1287,6 +1287,13 @@ body {
   transform: translateX(-50%) translateY(0);
 }
 
+/* Touch/small-screen fallback for the hover-only hero traits. Hidden by
+   default (desktop uses the interactive line); revealed as chips below. */
+.about-traits {
+  display: none;
+  margin: 0;
+}
+
 /* Intro text */
 .about-intro {
   max-width: 820px;
@@ -1357,8 +1364,8 @@ body {
 
 @media (max-width: 700px) {
   .about-hero {
-    height: 62vh;
-    min-height: 380px;
+    height: 52vh;
+    min-height: 340px;
   }
 
   .about-start {
@@ -1371,11 +1378,16 @@ body {
   }
 
   .about-intro {
-    padding: 4rem 6vw 3rem;
+    padding: 3.5rem 6vw 3rem;
+  }
+
+  .about-intro h1 {
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
   }
 
   .about-intro p {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+    line-height: 1.65;
   }
 
   .about-connect {
@@ -1383,6 +1395,53 @@ body {
   }
 
   .about-connect-links {
-    gap: 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .about-connect-link {
+    font-size: 1.3rem;
+  }
+}
+
+/* Where hover isn't available (phones/tablets) or the screen is narrow, the
+   hero's hover-reveal traits don't work — swap in a tappable-free chip list. */
+@media (hover: none), (max-width: 700px) {
+  .about-hero .about-start {
+    display: none;
+  }
+
+  .about-dots {
+    display: none;
+  }
+
+  .about-traits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem;
+    max-width: 640px;
+    margin: 2.25rem auto -1rem;
+    padding: 0 6vw;
+    list-style: none;
+  }
+
+  .about-traits li {
+    padding: 0.4rem 1.05rem;
+    font-size: 1.05rem;
+    color: var(--about-line);
+    border: 1px solid var(--about-line);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 400px) {
+  .about-connect-link {
+    font-size: 1.15rem;
+  }
+
+  .about-traits li {
+    font-size: 0.95rem;
+    padding: 0.35rem 0.85rem;
   }
 }

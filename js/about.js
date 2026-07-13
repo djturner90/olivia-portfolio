@@ -63,6 +63,18 @@ labels.forEach((text, i) => {
   dotsWrap.appendChild(dot);
 });
 
+// Touch / small-screen fallback: the hero labels only reveal on hover, which
+// does nothing on a phone. Mirror the same traits as a visible chip list that
+// CSS shows only where hover isn't available.
+const traitsWrap = document.getElementById("aboutTraits");
+if (traitsWrap) {
+  labels.forEach((text) => {
+    const li = document.createElement("li");
+    li.textContent = text;
+    traitsWrap.appendChild(li);
+  });
+}
+
 // Reactive background glow (shared behaviour with the homepage).
 const root = document.documentElement;
 let targetX = window.innerWidth / 2;
