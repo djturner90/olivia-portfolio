@@ -25,6 +25,7 @@ body {
   color: var(--fg);
   font-family: "Cormorant Garamond", "Times New Roman", Georgia, serif;
   position: relative;
+  overflow-x: hidden;
 }
 
 /* Reactive background glow */
@@ -899,6 +900,16 @@ body {
   .projects {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Scale the hero word down so it stops overflowing on tablets. The
+     desktop clamp has a 9rem floor that is far too large below ~1000px. */
+  .bio-name {
+    font-size: clamp(5.5rem, 19vw, 15rem);
+  }
+
+  .bio-text {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 700px) {
@@ -923,6 +934,41 @@ body {
     letter-spacing: 0.04em;
     opacity: 1;
     white-space: nowrap;
+  }
+
+  /* Hero: shrink the giant "Portfolio" word so it fits within the
+     viewport instead of spilling off both edges, and tighten spacing. */
+  .bio {
+    min-height: 72vh;
+    padding: 2.5rem 6vw 1rem;
+  }
+
+  .bio-eyebrow {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  .bio-name {
+    font-size: clamp(3.75rem, 18vw, 8rem);
+    margin-bottom: 1rem;
+  }
+
+  .bio-text {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .marquee {
+    padding: 0.6rem 0;
+  }
+
+  .marquee-track span {
+    padding: 0 1rem;
+  }
+
+  .heart-line {
+    min-height: 32vh;
+    padding: 3rem 6vw 3.5rem;
+    border-radius: 0 0 40px 40px;
   }
 
   .projects {
@@ -1056,6 +1102,35 @@ body {
     width: 2.5rem;
     height: 2.5rem;
     font-size: 1.4rem;
+  }
+}
+
+/* Extra-small phones: keep the header on one line and the hero readable */
+@media (max-width: 400px) {
+  .site-header {
+    padding: 0.9rem 4vw;
+    gap: 0.5rem;
+  }
+
+  .site-logo {
+    height: 2rem;
+  }
+
+  .site-nav {
+    gap: 0.6rem;
+  }
+
+  .site-nav a {
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  .bio-name {
+    font-size: clamp(3rem, 17vw, 5rem);
+  }
+
+  .bio-text {
+    font-size: 1.1rem;
   }
 }
 
