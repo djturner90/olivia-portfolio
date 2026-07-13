@@ -7,7 +7,32 @@ function storyImg(name) {
 }
 
 function foldImg(name) {
-  return `project_2_fold/${encodeURIComponent(name)}`;
+  return `Project%202%20%28fold%29/${encodeURIComponent(name)}`;
+}
+
+function femImg(name) {
+  return `Project%203%20%28Future%20of%20Femininity%29/${encodeURIComponent(name)}`;
+}
+
+// Thin reformer-spring coil as an SVG (side view = a sine helix with two anchor
+// dots). Used purely decoratively in the blank space beside the app video.
+function reformerSpringSvg(coils, delay) {
+  const w = 172;
+  const h = 30;
+  const mid = h / 2;
+  const amp = mid - 3;
+  const n = coils * 20;
+  let d = `M6,${mid}`;
+  for (let i = 1; i <= n; i++) {
+    const x = 6 + ((w - 12) * i) / n;
+    const y = mid - amp * Math.sin((2 * Math.PI * coils * i) / n);
+    d += ` L${x.toFixed(1)},${y.toFixed(1)}`;
+  }
+  return `<svg class="spring" style="animation-delay:${delay}s" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="${d}" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="6" cy="${mid}" r="2" fill="currentColor"/>
+    <circle cx="${w - 6}" cy="${mid}" r="2" fill="currentColor"/>
+  </svg>`;
 }
 
 const projects = {
@@ -55,57 +80,259 @@ const projects = {
   },
   two: {
     title: "FÔLD",
-    meta: "[Role] — [Year] — Reformer Pilates Brand & Product System",
+    meta: "Brand Identity · Apparel · Product & Digital Design",
+    tags: ["Branding", "Product Design"],
     overview:
-      "[Write 2–3 sentences here about the FÔLD brand: who they are, what you were asked to design, and your role across brand identity, apparel, and digital.]",
-    heroImage: foldImg("IMG_8192.WEBP"),
-    sections: [
+      "As Lead Designer at FÔLD reformer and first official employee of the start up, I was responsible for leading the design process from concept through to final production across a wide range of products. My work included designing apparel, accessories and reformer equipment, such as matts and resistant bands, while ensuring each product reflected the brand’s premium identity and vision.",
+    text:
+      "Alongside product design, I contributed to the development of the brand identity, sourced and liaised with manufacturers, and worked closely with the co-founders, business team and social media creators throughout the development process. This role strengthened my organisational skills and ability to manage multiple projects while collaborating across a fast-paced, multidisciplinary team.",
+    // ─────────────────────────────────────────────────────────────
+    // HOW TO REORDER: each { ... } block below is one row on the page,
+    // top to bottom. To change the order, cut a whole block and paste it
+    // where you want it. Row types:
+    //   intro = title + text on the left, big image on the right (first row)
+    //   solo  = one full-width image
+    //   pair  = two images side by side  (add tall: true for portrait images)
+    //   text  = a centred line of text (a breather between image rows)
+    // To swap an image, just change the filename inside foldImg("...").
+    // ─────────────────────────────────────────────────────────────
+    story: [
       {
-        title: "Brand Identity",
-        text: "[Write about the FÔLD wordmark, colour system, and overall brand direction here.]",
-        images: ["IMG_6747.jpg", "IMG_6748.jpg", "IMG_6986.jpg"].map(foldImg),
+        type: "intro",
+        image: { src: foldImg("New.webp"), arch: true },
       },
       {
-        title: "Apparel & Merch",
-        text: "[Write about the ÔWEAR and HÔF Pilates Studio merch lines here — concept, fabric, and colourways.]",
-        images: [
-          "HOUSE of FOLD merch.jpg",
-          "IMG_0266.jpg",
-          "IMG_0267.jpg",
-          "IMG_0268.jpg",
-          "IMG_0272.jpg",
-          "IMG_0273.jpg",
-          "IMG_6994.jpg",
-        ].map(foldImg),
+        // Custom row: big brand board · app phone · fold 10 + fold 11 stacked.
+        // Images size to their natural aspect and top-align (no blank space).
+        // The app column's flex is tuned so the phone's height matches the
+        // board on the left. Resize any column by changing its "flex".
+        type: "columns",
+        columns: [
+          {
+            flex: 2.4,
+            images: [
+              { src: foldImg("Fold 19.png"), arch: true },
+            ],
+          },
+          {
+            flex: 0.75,
+            images: [
+              { src: foldImg("app-transparent.png"), arch: true },
+            ],
+          },
+          {
+            flex: 1.1,
+            align: "center",
+            images: [
+              { src: foldImg("fold 10.PNG"), arch: true, zoom: 0.85 },
+              { src: foldImg("fold 11.PNG"), arch: true, zoom: 0.85 },
+            ],
+          },
+        ],
       },
       {
-        title: "Accessories & Equipment",
-        text: "[Write about the resistance bands, tote bags, and reformer mat here.]",
-        images: [
-          "O_tote_bags_4_colours.jpg",
-          "IMG_6995.jpg",
-          "IMG_0274.jpg",
-          "IMG_0275.jpg",
-          "IMG_0271.WEBP",
-          "IMG_8441.WEBP",
-          "IMG_8785.WEBP",
-          "IMG_8787.WEBP",
-          "IMG_8793.jpg",
-          "IMG_6992.jpg",
-        ].map(foldImg),
+        // Explanatory text on the left, the important Vogue image on the right.
+        // Write the caption in "heading" / "text" below.
+        type: "feature",
+        heading: "Featured by British Vogue",
+        text: "FÔLD reformer was mentioned by British Vogue. They published comments about my product designs, specifically my grip socks which I designed on my own and worked closely with the manufacturer to ensure high quality and innovation for a sticky grip.",
+        image: { src: foldImg("vogue.jpg"), arch: true },
       },
       {
-        title: "Digital Experience",
-        text: "[Write about the FÔLD app/website experience here — what it does and your role in designing it.]",
-        images: ["Sketchbook plan e (Rirekisho (A3)).png"].map(foldImg),
+        // Three-image row: fold 3 photo (left) · isolated socks (middle, nudged
+        // left) · navy grip-sock pack cropped from fold 4 (right). Sizes via flex.
+        type: "columns",
+        columns: [
+          {
+            flex: 1,
+            align: "center",
+            images: [
+              { src: foldImg("fold 3.PNG"), arch: true },
+            ],
+          },
+          {
+            flex: 1.5,
+            align: "center",
+            offsetX: "-5%",
+            images: [
+              { src: foldImg("socks-transparent.png"), arch: true, zoom: 0.8 },
+            ],
+          },
+          {
+            flex: 0.46,
+            align: "center",
+            offsetX: "-12%",
+            images: [
+              { src: foldImg("fold 4.png"), arch: true, zoom: 0.9 },
+            ],
+          },
+        ],
+      },
+      {
+        // Two-image row: fold 9 bands isolated on transparent (left) ·
+        // fold 6 close-up (right). Small centred caption in the text row below.
+        type: "columns",
+        columns: [
+          {
+            flex: 2,
+            align: "center",
+            images: [
+              { src: foldImg("bands-transparent.png"), arch: true, zoom: 0.8 },
+            ],
+          },
+          {
+            flex: 1,
+            align: "center",
+            images: [
+              { src: foldImg("fold 6.png"), arch: true },
+            ],
+          },
+        ],
+      },
+      {
+        type: "text",
+        text: "Here are a couple of examples where my concept designs have then been translated to 3D products ready for customers.",
+      },
+      {
+        // Looping video directly below the caption. Its original white
+        // background is stripped to transparency (WebM = real alpha, MP4 =
+        // black-baked fallback). Plays muted on a continuous loop.
+        type: "video",
+        sources: [foldImg("vid.webm"), foldImg("vid.mp4")],
+      },
+      {
+        // Two ÔWEAR garment flats side by side in one row, directly below the
+        // video. Both had their white backgrounds stripped to transparency
+        // (fold5-transparent.png / fold7-transparent.png).
+        type: "columns",
+        columns: [
+          {
+            flex: 1,
+            align: "center",
+            images: [{ src: foldImg("fold5-transparent.png"), arch: true }],
+          },
+          {
+            flex: 1,
+            align: "center",
+            images: [{ src: foldImg("fold7-transparent.png"), arch: true }],
+          },
+        ],
+      },
+      {
+        // Closing caption — last thing on the page, below the ÔWEAR flats.
+        type: "text",
+        text: "ÔWEAR is the apparel line for FÔLD reformer, and it became the area I focused on most — designing across both apparel and accessories from first concept through to the finished product. As lead designer I was able to fully own this range, balancing my own creative direction with the needs of the brand so that every piece stayed true to the FÔLD identity while still feeling considered and original.",
       },
     ],
   },
   three: {
-    title: "Project Three",
+    title: "Future of Femininity",
+    meta: "Fashion Collection · Concept & Design",
+    tags: ["Fashion Design", "Concept Development"],
+    overview:
+      "[ Add the Future of Femininity overview here — the concept behind the collection, your role, and what it explores. ]",
+    text:
+      "[ Add a second short paragraph here — the materials, process, or the story behind the gold draping and the “digital Venus” identity. ]",
+    // Same row vocabulary as Projects 1 & 2 — intro first (title + text on the
+    // left, opening image on the right), then a mix of pair / solo / columns /
+    // text rows. Reorder by moving whole { } blocks; swap an image by changing
+    // the filename inside femImg("...").
+    story: [
+      {
+        type: "intro",
+        image: {
+          src: femImg("f3.jpeg"),
+          arch: true,
+        },
+      },
+      {
+        // Two photographed looks side by side (portraits).
+        type: "pair",
+        tall: true,
+        images: [
+          { src: femImg("f1.jpeg"), arch: true },
+          { src: femImg("f2.jpeg"), arch: true },
+        ],
+      },
+      {
+        type: "text",
+        text: "[ Add a short centred line about the collection or concept here. ]",
+      },
+      {
+        // Research / mood board — shown at natural aspect, no crop.
+        type: "columns",
+        columns: [
+          { flex: 1, images: [{ src: femImg("f16.png"), arch: true }] },
+        ],
+      },
+      {
+        // Two design-development boards side by side.
+        type: "columns",
+        columns: [
+          { flex: 1, images: [{ src: femImg("f13.png"), arch: true }] },
+          { flex: 1, images: [{ src: femImg("f14.png"), arch: true }] },
+        ],
+      },
+      {
+        // Two fashion illustrations (the narrow one gets less width via flex).
+        type: "columns",
+        columns: [
+          {
+            flex: 1,
+            align: "center",
+            images: [{ src: femImg("f6.PNG"), arch: true }],
+          },
+          {
+            flex: 0.6,
+            align: "center",
+            images: [{ src: femImg("f7.PNG"), arch: true }],
+          },
+        ],
+      },
+      {
+        // Gold silk texture / detail, full-width.
+        type: "solo",
+        image: { src: femImg("f8.PNG"), arch: true },
+      },
+      {
+        // Branding: the "digital Venus" logo · the swing tags.
+        type: "columns",
+        columns: [
+          {
+            flex: 1,
+            align: "center",
+            images: [{ src: femImg("f5.PNG"), arch: true }],
+          },
+          {
+            flex: 1,
+            align: "center",
+            images: [{ src: femImg("f4.png"), arch: true }],
+          },
+        ],
+      },
+      {
+        // Colour / material palette.
+        type: "columns",
+        columns: [
+          { flex: 1, images: [{ src: femImg("f12.png"), arch: true }] },
+        ],
+      },
+    ],
+  },
+  // Empty scaffolds — ready to fill in the same way as Projects 1–3. Give each
+  // a `tags: [...]`, a real `overview`/`text`, and a `story: [ ... ]` array
+  // (start with an `intro` row), then set the card thumbnail in index.html.
+  four: {
+    title: "Project Four",
     meta: "[Role] — [Year]",
     overview:
-      "Placeholder description for Project Three. Swap this out with a short summary of the work, your role, and the outcome.",
+      "[ Placeholder — replace with the Project Four overview. Add tags and a story array to build out the case study. ]",
+  },
+  five: {
+    title: "Project Five",
+    meta: "[Role] — [Year]",
+    overview:
+      "[ Placeholder — replace with the Project Five overview. Add tags and a story array to build out the case study. ]",
   },
 };
 
@@ -228,6 +455,9 @@ function openModal(id) {
 
         const imageCol = document.createElement("div");
         imageCol.className = "case-story-intro-image";
+        if (row.image.height) {
+          imageCol.style.height = row.image.height;
+        }
         imageCol.appendChild(buildStoryImage(row.image, project.title));
 
         rowEl.appendChild(textCol);
@@ -242,12 +472,95 @@ function openModal(id) {
           cell.appendChild(buildStoryImage(image, project.title));
           rowEl.appendChild(cell);
         });
+      } else if (row.type === "columns") {
+        rowEl.classList.add("case-story-columns");
+        if (row.height) {
+          rowEl.style.height = row.height;
+        }
+        rowEl.style.gridTemplateColumns = row.columns
+          .map((col) => `${col.flex || 1}fr`)
+          .join(" ");
+        row.columns.forEach((col) => {
+          const colEl = document.createElement("div");
+          colEl.className = "case-story-col";
+          if (col.offsetX) {
+            colEl.style.transform = `translateX(${col.offsetX})`;
+          }
+          if (col.align) {
+            // vertical position of a shorter column within the row: center | end
+            colEl.style.alignSelf = col.align;
+          }
+          col.images.forEach((image) => {
+            const cell = document.createElement("div");
+            cell.className = "case-story-col-cell";
+            cell.appendChild(buildStoryImage(image, project.title));
+            colEl.appendChild(cell);
+          });
+          rowEl.appendChild(colEl);
+        });
+      } else if (row.type === "feature") {
+        // Text explanation on the left, one important image on the right.
+        rowEl.classList.add("case-story-feature");
+
+        const textCol = document.createElement("div");
+        textCol.className = "case-story-feature-text";
+        if (row.heading) {
+          const h = document.createElement("h3");
+          h.className = "case-story-feature-heading";
+          h.textContent = row.heading;
+          textCol.appendChild(h);
+        }
+        if (row.text) {
+          const p = document.createElement("p");
+          p.textContent = row.text;
+          textCol.appendChild(p);
+        }
+
+        const imageCol = document.createElement("div");
+        imageCol.className = "case-story-feature-image";
+        imageCol.appendChild(buildStoryImage(row.image, project.title));
+
+        rowEl.appendChild(textCol);
+        rowEl.appendChild(imageCol);
       } else if (row.type === "solo") {
         rowEl.classList.add("case-story-solo");
         rowEl.appendChild(buildStoryImage(row.image, project.title));
       } else if (row.type === "text") {
         rowEl.classList.add("case-story-text");
         rowEl.textContent = row.text;
+      } else if (row.type === "video") {
+        // Looping, muted, autoplay video with its original white background
+        // stripped to transparency (per-frame flood-fill baked into the files).
+        // WebM carries a real alpha channel; the MP4 fallback bakes the removed
+        // area to black, which is identical against the modal's #000 backdrop.
+        rowEl.classList.add("case-story-video");
+        const video = document.createElement("video");
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.setAttribute("playsinline", "");
+        video.setAttribute("muted", "");
+        (row.sources || [row.src]).forEach((src) => {
+          const s = document.createElement("source");
+          s.src = src;
+          if (src.endsWith(".webm")) s.type = "video/webm";
+          else if (src.endsWith(".mp4")) s.type = "video/mp4";
+          video.appendChild(s);
+        });
+        rowEl.appendChild(video);
+        // Delicate reformer-spring motion filling the blank space either side of
+        // the phone: thin coils that slowly breathe (stretch/relax) toward it.
+        ["left", "right"].forEach((side) => {
+          const panel = document.createElement("div");
+          panel.className = `case-story-springs case-story-springs--${side}`;
+          panel.setAttribute("aria-hidden", "true");
+          panel.innerHTML =
+            reformerSpringSvg(7, 0) +
+            reformerSpringSvg(9, 1.4) +
+            reformerSpringSvg(6, 2.8);
+          rowEl.appendChild(panel);
+        });
       }
 
       caseStory.appendChild(rowEl);
@@ -274,7 +587,10 @@ function openModal(id) {
     modalGallery.style.display = "none";
     caseSections.style.display = "block";
 
-    activeGallery = project.sections.flatMap((section) => section.images);
+    const srcOf = (image) => (typeof image === "string" ? image : image.src);
+    activeGallery = project.sections.flatMap((section) =>
+      section.images.map(srcOf)
+    );
     let runningIndex = 0;
 
     project.sections.forEach((section) => {
@@ -292,10 +608,12 @@ function openModal(id) {
       const grid = document.createElement("div");
       grid.className = "case-bento";
 
-      section.images.forEach((src) => {
+      section.images.forEach((image) => {
+        const src = srcOf(image);
+        const isCover = typeof image === "object" && image.cover;
         const index = runningIndex++;
         const card = document.createElement("a");
-        card.className = "case-bento-item";
+        card.className = "case-bento-item" + (isCover ? " case-bento-item--cover" : "");
         card.href = src;
         card.addEventListener("click", (e) => {
           e.preventDefault();

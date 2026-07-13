@@ -7,6 +7,7 @@
   --accent: #33513f;
   --marquee-color: #e8628f;
   --card-bg: #fffdf9;
+  --about-line: #c96ca4; /* matched to the pink shorts in me.JPEG */
 }
 
 * {
@@ -216,7 +217,7 @@ body {
 /* Projects */
 .projects {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
   padding: 5rem 8vw;
 }
@@ -508,8 +509,19 @@ body {
   color: rgba(245, 242, 236, 0.9) !important;
 }
 
+/* Hero image stretches to exactly match the text column's height, so the
+   title lines up with the top of the image and the last paragraph lines up
+   with the bottom — consistent on every screen size and both projects. */
 .case-story-intro-image {
-  height: 65vh;
+  position: relative;
+  align-self: stretch;
+  min-height: 55vh;
+}
+
+.case-story-intro-image > a {
+  position: absolute;
+  inset: 0;
+  display: block;
 }
 
 /* Row: pair (two images side by side) */
@@ -533,6 +545,70 @@ body {
   height: 60vh;
 }
 
+/* Row: flexible multi-column layout. Images size to their natural aspect and
+   the columns top-align, so there's no letterbox/blank space and every column's
+   top edge lines up. Match two images' heights by tuning their column "flex". */
+.case-story-columns {
+  display: grid;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.case-story-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.case-story-col-cell > a {
+  height: auto !important; /* override buildStoryImage's inline height:100% */
+}
+
+.case-story-columns .case-story-col-cell img {
+  height: auto; /* natural aspect — no cover-crop, no letterboxing */
+  object-fit: contain;
+}
+
+/* Row: feature (explanatory text on the left, one important image on the
+   right shown large at its natural aspect, text vertically centred beside it) */
+.case-story-feature {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 4vw;
+  align-items: center;
+}
+
+.case-story-feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.case-story-feature-heading {
+  font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #f5f2ec;
+  margin: 0;
+}
+
+.case-story-feature-text p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: rgba(245, 242, 236, 0.7);
+  margin: 0;
+}
+
+.case-story-feature-image > a {
+  display: block;
+  height: auto !important; /* natural aspect, not the forced 100% */
+}
+
+.case-story-feature .case-story-feature-image img {
+  height: auto;
+  object-fit: contain;
+}
+
 /* Row: filler text spacer */
 .case-story-text {
   max-width: 90ch;
@@ -543,6 +619,77 @@ body {
   font-style: italic;
   line-height: 1.7;
   color: rgba(245, 242, 236, 0.6);
+}
+
+/* Row: looping video with its black background blended out to transparent */
+.case-story-video {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.case-story-video video {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: 495px;
+  height: auto;
+}
+
+/* Decorative reformer springs in the blank space either side of the phone */
+.case-story-springs {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.4rem;
+  color: #f5f2ec;
+  pointer-events: none;
+  overflow: hidden;
+}
+.case-story-springs--left {
+  left: 0;
+  right: calc(50% + 275px);
+}
+.case-story-springs--right {
+  right: 0;
+  left: calc(50% + 275px);
+}
+.case-story-springs .spring {
+  opacity: 0.15;
+  animation: spring-breathe 6.5s ease-in-out infinite;
+}
+/* springs reach toward the phone: left ones grow rightward, right ones leftward */
+.case-story-springs--left .spring {
+  transform-origin: right center;
+}
+.case-story-springs--right .spring {
+  transform-origin: left center;
+}
+@keyframes spring-breathe {
+  0%,
+  100% {
+    transform: scaleX(0.9);
+    opacity: 0.12;
+  }
+  50% {
+    transform: scaleX(1.12);
+    opacity: 0.2;
+  }
+}
+@media (max-width: 860px) {
+  .case-story-springs {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-story-springs .spring {
+    animation: none;
+  }
 }
 
 .case-gallery {
@@ -652,6 +799,7 @@ body {
   overflow: hidden;
   border-radius: 18px;
   background: #f5f2ec;
+  padding: clamp(0.9rem, 1.8vw, 1.75rem);
 }
 
 .case-bento-item img {
@@ -664,16 +812,22 @@ body {
 }
 
 .case-bento-item:hover img {
-  transform: scale(1.06);
+  transform: scale(1.04);
+}
+
+/* Full-bleed photographic tiles */
+.case-bento-item--cover {
+  padding: 0;
+  background: #000;
+}
+
+.case-bento-item--cover img {
+  object-fit: cover;
 }
 
 .case-bento-item:nth-child(5n + 1) {
   grid-column: span 4;
   grid-row: span 2;
-}
-
-.case-bento-item:nth-child(5n + 1) img {
-  object-fit: cover;
 }
 
 .case-bento-item:nth-child(5n + 4) {
@@ -739,6 +893,12 @@ body {
 
 .lightbox-next {
   right: 1.5rem;
+}
+
+@media (max-width: 1000px) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 700px) {
@@ -809,6 +969,7 @@ body {
 
   .case-story-intro-image {
     height: 45vh;
+    min-height: 0;
     order: -1;
   }
 
@@ -828,6 +989,24 @@ body {
 
   .case-story-solo {
     height: 35vh;
+  }
+
+  .case-story-columns {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  .case-story-feature {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .case-story-feature-image {
+    order: -1;
+  }
+
+  .case-story-col {
+    transform: none !important;
   }
 
   .case-arch {
@@ -854,5 +1033,258 @@ body {
     width: 2.5rem;
     height: 2.5rem;
     font-size: 1.4rem;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   About Me page
+   ───────────────────────────────────────────────────────────── */
+.site-nav a.is-current {
+  border-bottom: 2px solid var(--fg);
+  padding-bottom: 2px;
+}
+
+/* Hero photo with the interactive story line drawn over it */
+.about-hero {
+  position: relative;
+  width: 100%;
+  height: 82vh;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.about-hero-photo {
+  position: absolute;
+  inset: 0;
+  background:
+    url("../me.JPEG") center 42% / cover no-repeat,
+    linear-gradient(135deg, #efd9c6, #e7bfb4);
+}
+
+.about-wave {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.about-wave path {
+  fill: none;
+  stroke: var(--about-line);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* "Start here :)" cue, top-right, pointing to where the line begins */
+.about-start {
+  position: absolute;
+  top: 7%;
+  right: 6%;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+}
+
+.about-start-arrow {
+  width: clamp(46px, 5vw, 72px);
+  height: auto;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.35));
+}
+
+/* Invisible hover zones that sit on the line (no visible dots) */
+.about-dots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Zero-size point anchored exactly on the line; everything positions from it */
+.about-dot {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.about-dot-hit {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 134px;
+  height: 134px;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* Thin leader line connecting the line to its label box (as in ab3) */
+.about-dot::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 2px;
+  height: 45px;
+  background: var(--about-line);
+  transform: translateX(-50%) scaleY(0);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.about-dot--top::before {
+  bottom: 0;
+  transform-origin: bottom;
+}
+
+.about-dot--bottom::before {
+  top: 0;
+  transform-origin: top;
+}
+
+.about-dot:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) scaleY(1);
+}
+
+/* Black label box with warm cream text */
+.about-dot-label {
+  position: absolute;
+  left: 0;
+  transform: translateX(-50%) translateY(6px);
+  width: max-content;
+  max-width: 15rem;
+  text-align: center;
+  line-height: 1.25;
+  background: #111;
+  color: #f3e6cf;
+  padding: 0.95rem 1.6rem;
+  border-radius: 5px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.about-dot-label--top {
+  bottom: 48px;
+}
+
+.about-dot-label--bottom {
+  top: 48px;
+}
+
+.about-dot:hover .about-dot-label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Intro text */
+.about-intro {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 6rem 8vw 5rem;
+}
+
+.about-intro h1 {
+  font-size: clamp(2.6rem, 6vw, 4.2rem);
+  font-weight: 600;
+  margin: 0 0 1.5rem;
+}
+
+.about-intro p {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: var(--fg);
+  margin: 0 0 1.4rem;
+}
+
+/* Let's Connect — dark closing block (echoes the site's dark sections) */
+.about-connect {
+  background: #000;
+  color: #f5f2ec;
+  padding: 6rem 8vw 8rem;
+}
+
+.about-connect-lead {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin: 0;
+  color: rgba(245, 242, 236, 0.75);
+  font-style: italic;
+}
+
+.about-connect h2 {
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 600;
+  margin: 0.2rem 0 2.5rem;
+}
+
+.about-connect-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.about-connect-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.about-connect-link:hover {
+  border-bottom-color: #fff;
+}
+
+.about-connect-link svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .about-hero {
+    height: 62vh;
+    min-height: 380px;
+  }
+
+  .about-start {
+    top: 5%;
+    font-size: 1.2rem;
+  }
+
+  .about-dot-label {
+    font-size: 1.5rem;
+  }
+
+  .about-intro {
+    padding: 4rem 6vw 3rem;
+  }
+
+  .about-intro p {
+    font-size: 1.3rem;
+  }
+
+  .about-connect {
+    padding: 4rem 6vw 6rem;
+  }
+
+  .about-connect-links {
+    gap: 1.5rem;
   }
 }
