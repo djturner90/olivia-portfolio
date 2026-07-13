@@ -902,6 +902,29 @@ body {
 }
 
 @media (max-width: 700px) {
+  /* Make the Work / About Me nav clearer and easier to tap on phones */
+  .site-header {
+    padding: 1rem 5vw;
+    gap: 0.75rem;
+  }
+
+  .site-logo {
+    height: 2.5rem;
+  }
+
+  .site-nav {
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  .site-nav a {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    opacity: 1;
+    white-space: nowrap;
+  }
+
   .projects {
     grid-template-columns: 1fr;
     padding: 3rem 6vw;
