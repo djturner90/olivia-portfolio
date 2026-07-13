@@ -181,6 +181,7 @@ These work locally on Windows (case-insensitive filesystem) but **will break on 
 - [x] ~~**Logo path case** — `index.html` referenced `logo.png` but the file was `Logo.png`.~~ Fixed: file renamed to `logo.png`.
 - [ ] **Project 2 folder path** — `main.js` and the card thumbnail reference `project_2_fold/…`, but the folder on disk is `Project 2 (fold)/`. Rename the folder to `project_2_fold` (recommended) or update the paths in `main.js`.
 - [ ] **Filename extensions** — some entries in `main.js` reference `.jpg` where the source files are `.PNG`/`.WEBP` (e.g. FÔLD images). Confirm each path matches the actual file, including extension case.
+- [ ] Needs to be mobile-friendly. Currently the nav bar is not mobile friendly and does not render well on a mobile device.
 
 Content roadmap:
 
