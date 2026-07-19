@@ -14,6 +14,10 @@ function femImg(name) {
   return `Project%203%20%28Future%20of%20Femininity%29/${encodeURIComponent(name)}`;
 }
 
+function oboImg(name) {
+  return `Project%204%20%28OCEANS%20by%20OLIVIA%29/${encodeURIComponent(name)}`;
+}
+
 // Thin reformer-spring coil as an SVG (side view = a sine helix with two anchor
 // dots). Used purely decoratively in the blank space beside the app video.
 function reformerSpringSvg(coils, delay) {
@@ -230,9 +234,9 @@ const projects = {
     meta: "Fashion Collection · Concept & Design",
     tags: ["Fashion Design", "Concept Development"],
     overview:
-      "[ Add the Future of Femininity overview here — the concept behind the collection, your role, and what it explores. ]",
+      "Future of Femininity reimagines femininity through a futuristic lens, exploring female strength, identity, and empowerment. Inspired by the power of the Roman era, the symbolism of gold, and the tension between freedom and control, the collection presents a bold vision of modern womanhood.",
     text:
-      "[ Add a second short paragraph here — the materials, process, or the story behind the gold draping and the “digital Venus” identity. ]",
+      "The project aimed to push the boundaries of contemporary fashion through material innovation and experimental construction. Using unconventional materials, including a top created from a repurposed picture frame, alongside advanced sewing techniques to create texture, the collection challenged traditional approaches to garment design.",
     // Same row vocabulary as Projects 1 & 2 — intro first (title + text on the
     // left, opening image on the right), then a mix of pair / solo / columns /
     // text rows. Reorder by moving whole { } blocks; swap an image by changing
@@ -241,8 +245,10 @@ const projects = {
       {
         type: "intro",
         image: {
-          src: femImg("f3.jpeg"),
+          src: femImg("thumb.jpeg"),
           arch: true,
+          position: "center 95%",
+          zoom: 1.1,
         },
       },
       {
@@ -250,13 +256,56 @@ const projects = {
         type: "pair",
         tall: true,
         images: [
-          { src: femImg("f1.jpeg"), arch: true },
           { src: femImg("f2.jpeg"), arch: true },
+          { src: femImg("f1.jpeg"), arch: true },
         ],
       },
       {
         type: "text",
-        text: "[ Add a short centred line about the collection or concept here. ]",
+        text: "Above are my final garments from this concept work. I created a golden shield top made 100% from recycled products and moulded it myself. I also created a 2 piece draped skirt with textured sewing techniques.",
+      },
+      {
+        // "digital Venus" branding — inverted to a black background / white
+        // text version (f5-inverted.png) so it doesn't sit as a white card
+        // against the dark page background.
+        type: "solo",
+        image: { src: femImg("f5-inverted.png"), arch: true },
+      },
+      {
+        // Two more design-development boards side by side.
+        type: "columns",
+        columns: [
+          { flex: 1, images: [{ src: femImg("f15.png"), arch: true }] },
+          { flex: 1, images: [{ src: femImg("f9.PNG"), arch: true }] },
+        ],
+      },
+      {
+        // Swing tags (background removed to transparent) · fashion illustration.
+        type: "columns",
+        columns: [
+          {
+            flex: 1,
+            align: "center",
+            images: [{ src: femImg("f4-removebg-preview.png"), arch: true }],
+          },
+          {
+            flex: 0.5,
+            align: "center",
+            images: [{ src: femImg("f7.PNG"), arch: true }],
+          },
+        ],
+      },
+      {
+        // Fashion illustration · design-development board.
+        type: "columns",
+        columns: [
+          { flex: 1, images: [{ src: femImg("f6.PNG"), arch: true }] },
+          {
+            flex: 1,
+            images: [{ src: femImg("f14.png"), arch: true }],
+            text: "Early development boards, where the drape, tension and gold tones were tested before being carried through into the final garments.",
+          },
+        ],
       },
       {
         // Research / mood board — shown at natural aspect, no crop.
@@ -265,68 +314,122 @@ const projects = {
           { flex: 1, images: [{ src: femImg("f16.png"), arch: true }] },
         ],
       },
-      {
-        // Two design-development boards side by side.
-        type: "columns",
-        columns: [
-          { flex: 1, images: [{ src: femImg("f13.png"), arch: true }] },
-          { flex: 1, images: [{ src: femImg("f14.png"), arch: true }] },
-        ],
+    ],
+  },
+  // Same row vocabulary as Projects 1–3 — intro first (title + text on the
+  // left, opening image on the right), then a mix of pair / solo / columns /
+  // text rows. Reorder by moving whole { } blocks; swap an image by changing
+  // the filename inside oboImg("...").
+  four: {
+    title: "OCEANS by OLIVIA",
+    meta: "Brand Identity · Marketing · Spring/Summer 2026",
+    tags: ["Branding", "Marketing"],
+    overview:
+      "OCEANS by OLIVIA (O by O) is the branding and marketing extension of Guardians of the Ocean, transforming the collection into a cohesive fashion brand centred around ocean conservation. Inspired by the materials, colours and marine life featured throughout the collection, I developed a complete visual identity that communicates the brand's values across every touchpoint.",
+    text:
+      "I designed the full brand identity, including the logo, website and a range of marketing materials such as a lookbook, promotional film, business cards and swing tags. Every element was created to build a strong, recognisable brand that reinforces the collection's message while showcasing my skills in branding, digital design and creative direction.",
+    story: [
+      { 
+        type: "intro",
+        image: {
+          src: oboImg("Look book - 1.png"),
+          arch: false,
+          fit: "contain",
+        },
       },
       {
-        // Two fashion illustrations (the narrow one gets less width via flex).
-        type: "columns",
-        columns: [
-          {
-            flex: 1,
-            align: "center",
-            images: [{ src: femImg("f6.PNG"), arch: true }],
-          },
-          {
-            flex: 0.6,
-            align: "center",
-            images: [{ src: femImg("f7.PNG"), arch: true }],
-          },
-        ],
-      },
-      {
-        // Gold silk texture / detail, full-width.
+        // Swing tags, hanging (background removed to transparent).
         type: "solo",
-        image: { src: femImg("f8.PNG"), arch: true },
+        image: { src: oboImg("IMG_0259-transparent.png"), arch: true },
       },
       {
-        // Branding: the "digital Venus" logo · the swing tags.
+        type: "text",
+        text: "The identity is built around a single reference point — the whale shark's markings — carried through into a mark, a print and a full set of brand collateral.",
+      },
+      {
+        // Business card front · back.
         type: "columns",
         columns: [
           {
             flex: 1,
-            align: "center",
-            images: [{ src: femImg("f5.PNG"), arch: true }],
+            images: [
+              {
+                src: oboImg("Black and White Modern Initials Business Card - 1.png"),
+                arch: true,
+              },
+            ],
           },
           {
             flex: 1,
-            align: "center",
-            images: [{ src: femImg("f4.png"), arch: true }],
+            images: [
+              {
+                src: oboImg("Black and White Modern Initials Business Card.png"),
+                arch: true,
+              },
+            ],
           },
         ],
       },
       {
-        // Colour / material palette.
+        // Swing tag front · back.
         type: "columns",
         columns: [
-          { flex: 1, images: [{ src: femImg("f12.png"), arch: true }] },
+          {
+            flex: 1,
+            align: "center",
+            images: [{ src: oboImg("IMG_9208.PNG"), arch: true }],
+          },
+          {
+            flex: 1,
+            align: "center",
+            images: [{ src: oboImg("IMG_9209.PNG"), arch: true }],
+          },
+        ],
+      },
+      {
+        type: "text",
+        text: "I presented the collection as a small exhibition at Bonington Vitrines, pairing the finished garments with the research, footage and reading that shaped them.",
+      },
+      {
+        // Exhibition install — two views, side by side.
+        type: "pair",
+        tall: true,
+        images: [
+          { src: oboImg("IMG_6827.JPG"), arch: true },
+          { src: oboImg("Untitled design - 7.jpg"), arch: true },
+        ],
+      },
+      {
+        // Close-up of the OBO label sewn into the mussel-shell garment.
+        type: "solo",
+        image: { src: oboImg("DSCF1313.jpg"), arch: true },
+      },
+      {
+        type: "text",
+        text: "Every material started as waste — netting, rope and shells collected and catalogued during beach cleans before making their way into the collection.",
+      },
+      {
+        // Raw ocean waste, sourced and sorted.
+        type: "pair",
+        tall: true,
+        images: [
+          { src: oboImg("IMG_8017.PNG"), arch: true },
+          { src: oboImg("Look book - 11.png"), arch: true },
+        ],
+      },
+      {
+        // Beach-clean research shot.
+        type: "solo",
+        image: { src: oboImg("beach-cleanup.jpg"), arch: true },
+      },
+      {
+        // Closing brand mark.
+        type: "columns",
+        columns: [
+          { flex: 1, images: [{ src: oboImg("IMG_9706.PNG"), arch: true }] },
         ],
       },
     ],
-  },
-  // Empty scaffolds — ready to fill in the same way as Projects 1–3. Give each
-  // a `tags: [...]`, a real `overview`/`text`, and a `story: [ ... ]` array
-  // (start with an `intro` row), then set the card thumbnail in index.html.
-  four: {
-    title: "Project Four",
-    meta: "[Role] — [Year]",
-    overview:
-      "[ Placeholder — replace with the Project Four overview. Add tags and a story array to build out the case study. ]",
   },
   five: {
     title: "Project Five",
@@ -496,6 +599,20 @@ function openModal(id) {
             cell.appendChild(buildStoryImage(image, project.title));
             colEl.appendChild(cell);
           });
+          if (col.text) {
+            // Fills whatever leftover height the row has beyond this column's
+            // image (e.g. a taller image in a neighbouring column) and
+            // centers the caption within that leftover space, rather than
+            // stacking it directly under the image.
+            const textWrap = document.createElement("div");
+            textWrap.className = "case-story-col-text-wrap";
+            const textEl = document.createElement("p");
+            textEl.className = "case-story-col-text";
+            textEl.textContent = col.text;
+            textWrap.appendChild(textEl);
+            colEl.appendChild(textWrap);
+            colEl.style.alignSelf = colEl.style.alignSelf || "stretch";
+          }
           rowEl.appendChild(colEl);
         });
       } else if (row.type === "feature") {
