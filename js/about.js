@@ -35,13 +35,14 @@ const labels = [
   "Artist",
   "Disney Lover",
   "Formula 1 Supporter",
-  "Community",
+  "Organised",
   "Animal Lover",
 ];
 
 const dotsWrap = document.getElementById("aboutDots");
 const totalLen = path.getTotalLength();
 
+const dotEls = [];
 labels.forEach((text, i) => {
   // Spread the hover zones evenly along the line, keeping clear of the very
   // start and end.
@@ -61,18 +62,52 @@ labels.forEach((text, i) => {
     `<div class="about-dot-label about-dot-label--${side}">${text}</div>` +
     `<div class="about-dot-hit"></div>`;
   dotsWrap.appendChild(dot);
+  dotEls.push(dot);
 });
 
-// Touch / small-screen fallback: the hero labels only reveal on hover, which
-// does nothing on a phone. Mirror the same traits as a visible chip list that
-// CSS shows only where hover isn't available.
-const traitsWrap = document.getElementById("aboutTraits");
-if (traitsWrap) {
-  labels.forEach((text) => {
-    const li = document.createElement("li");
-    li.textContent = text;
-    traitsWrap.appendChild(li);
-  });
+// On touch devices (no mouse to hover — e.g. a phone) there's nothing to hover,
+// so instead of a plain chip list we auto-play the labels along the line: each
+// word fades in at its own spot, in order, one at a time, then loops. On a
+// mouse device we keep the interactive hover line and build the chip fallback
+// for narrow non-touch windows.
+const isTouch =
+  window.matchMedia && window.matchMedia("(hover: none)").matches;
+
+if (isTouch) {
+  document.documentElement.classList.add("is-touch");
+
+  const HOLD = 1500; // how long each word stays before the next
+  let idx = 0;
+  const step = () => {
+    dotEls.forEach((d, i) => d.classList.toggle("is-revealed", i === idx));
+    // Nudge the active label horizontally so it never runs off the screen edge.
+    // Uses the dot's fixed position + the label's own width (both stable) rather
+    // than the label's live rect, which is mid-fade/transition when revealed.
+    const dot = dotEls[idx];
+    const label = dot.querySelector(".about-dot-label");
+    const cx = dot.getBoundingClientRect().left; // dot is 0-width → its x
+    const half = label.offsetWidth / 2;
+    const M = 8;
+    let dx = 0;
+    if (cx - half < M) dx = M - (cx - half);
+    else if (cx + half > window.innerWidth - M) dx = window.innerWidth - M - (cx + half);
+    label.style.transform = `translateX(-50%) translateX(${Math.round(dx)}px) translateY(0)`;
+    idx = (idx + 1) % dotEls.length;
+    setTimeout(step, HOLD);
+  };
+  // Wait for the web font so label widths (and the clamp) are measured correctly.
+  const start = () => setTimeout(step, 600);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(start);
+  else start();
+} else {
+  const traitsWrap = document.getElementById("aboutTraits");
+  if (traitsWrap) {
+    labels.forEach((text) => {
+      const li = document.createElement("li");
+      li.textContent = text;
+      traitsWrap.appendChild(li);
+    });
+  }
 }
 
 // Reactive background glow (shared behaviour with the homepage).

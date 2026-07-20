@@ -18,6 +18,10 @@ function oboImg(name) {
   return `Project%204%20%28OCEANS%20by%20OLIVIA%29/${encodeURIComponent(name)}`;
 }
 
+function uwImg(name) {
+  return `Project%205%20%28Universal%20Works%29/${encodeURIComponent(name)}`;
+}
+
 // Thin reformer-spring coil as an SVG (side view = a sine helix with two anchor
 // dots). Used purely decoratively in the blank space beside the app video.
 function reformerSpringSvg(coils, delay) {
@@ -75,6 +79,24 @@ const projects = {
       {
         type: "text",
         text: "I created the Colony Corset, Colony Bag and The Guardian Dress using sustainable materials and original design concepts inspired by marine life. Each piece reflects my passion for creating products that are both innovative and environmentally conscious.",
+      },
+      {
+        // Colony Bag (left) · Colony Corset front+back (right), backgrounds
+        // removed to transparency. Corset column is wider so both roughly match
+        // in height (bag is portrait, corset image is landscape).
+        type: "columns",
+        columns: [
+          {
+            flex: 1,
+            align: "center",
+            images: [{ src: imgPath("bag-transparent.png"), arch: false }],
+          },
+          {
+            flex: 2.5,
+            align: "center",
+            images: [{ src: imgPath("corsetd-transparent.png"), arch: false }],
+          },
+        ],
       },
       {
         type: "solo",
@@ -338,75 +360,80 @@ const projects = {
         },
       },
       {
-        // Swing tags, hanging (background removed to transparent).
-        type: "solo",
-        image: { src: oboImg("IMG_0259-transparent.png"), arch: true },
-      },
-      {
-        type: "text",
-        text: "The identity is built around a single reference point — the whale shark's markings — carried through into a mark, a print and a full set of brand collateral.",
-      },
-      {
-        // Business card front · back.
-        type: "columns",
-        columns: [
-          {
-            flex: 1,
-            images: [
-              {
-                src: oboImg("Black and White Modern Initials Business Card - 1.png"),
-                arch: true,
-              },
-            ],
-          },
-          {
-            flex: 1,
-            images: [
-              {
-                src: oboImg("Black and White Modern Initials Business Card.png"),
-                arch: true,
-              },
-            ],
-          },
-        ],
-      },
-      {
-        // Swing tag front · back.
-        type: "columns",
-        columns: [
-          {
-            flex: 1,
-            align: "center",
-            images: [{ src: oboImg("IMG_9208.PNG"), arch: true }],
-          },
-          {
-            flex: 1,
-            align: "center",
-            images: [{ src: oboImg("IMG_9209.PNG"), arch: true }],
-          },
-        ],
-      },
-      {
-        type: "text",
-        text: "I presented the collection as a small exhibition at Bonington Vitrines, pairing the finished garments with the research, footage and reading that shaped them.",
-      },
-      {
-        // Exhibition install — two views, side by side.
+        // Exhibition install — two views, side by side. Moved up to sit
+        // directly beneath the intro.
         type: "pair",
         tall: true,
         images: [
-          { src: oboImg("IMG_6827.JPG"), arch: true },
-          { src: oboImg("Untitled design - 7.jpg"), arch: true },
+          { src: oboImg("exhi.jpg"), arch: true, zoom: 0.88 },
+          { src: oboImg("exhi2.JPG"), arch: true, zoom: 0.88 },
         ],
+      },
+      {
+        // Centered caption under the exhibition pair (nudged closer to the images).
+        type: "text",
+        marginTop: "1.75rem",
+        text: "OCEANS by OLIVIA at an exhibition, presenting the pieces as artwork.",
+      },
+      {
+        // TAG (left) · card (right), between the intro and the phone board.
+        type: "columns",
+        columns: [
+          { flex: 1, align: "center", images: [{ src: oboImg("TAG.png"), arch: true }] },
+          {
+            flex: 1,
+            align: "center",
+            images: [
+              { src: oboImg("one.png"), arch: true, zoom: 0.8 },
+              { src: oboImg("two..png"), arch: true, zoom: 0.8 },
+            ],
+          },
+        ],
+      },
+      {
+        // Full-width phone board. Scaled up 20% and un-clipped so the whole
+        // image shows; extra vertical margin keeps the overflow off its
+        // neighbours.
+        type: "columns",
+        marginTop: "5rem",
+        marginBottom: "6rem",
+        columns: [
+          {
+            flex: 1,
+            images: [
+              { src: oboImg("phone.png"), arch: true, zoom: 1.2, noClip: true },
+            ],
+          },
+        ],
+      },
+      {
+        // Site link under the phone board. Extra top margin keeps it clear of
+        // the scaled phone image's overflow so the link itself is clickable.
+        type: "link",
+        marginTop: "1rem",
+        text: "OceansbyOlivia.com",
+        href: "https://oceansbyolivia.com",
+      },
+      {
+        // Inline OCEANS by OLIVIA campaign film.
+        type: "youtube",
+        videoId: "iKv18ZrU2uM",
+        title: "OCEANS by OLIVIA — campaign film",
+        marginTop: "3rem",
+      },
+      {
+        // Caption for the film.
+        type: "text",
+        text: "As part of this project I produced a short film. I filmed, edited and directed this film. See above",
       },
       {
         // Close-up of the OBO label sewn into the mussel-shell garment.
         type: "solo",
-        image: { src: oboImg("DSCF1313.jpg"), arch: true },
+        image: { src: oboImg("corset.jpg"), arch: true, position: "55% 45%" },
       },
       {
         type: "text",
-        text: "Every material started as waste — netting, rope and shells collected and catalogued during beach cleans before making their way into the collection.",
+        text: "Aswell as using sustainable materials I also conducted a coastal litter pick. I wanted to have a real impact even if it was just a small one.",
       },
       {
         // Raw ocean waste, sourced and sorted.
@@ -423,19 +450,106 @@ const projects = {
         image: { src: oboImg("beach-cleanup.jpg"), arch: true },
       },
       {
-        // Closing brand mark.
+        // OBO logo, background removed, centered.
         type: "columns",
+        marginTop: "1rem",
         columns: [
-          { flex: 1, images: [{ src: oboImg("IMG_9706.PNG"), arch: true }] },
+          {
+            flex: 1,
+            align: "center",
+            images: [
+              { src: oboImg("logo-transparent.png"), arch: false, maxWidth: "150px" },
+            ],
+          },
         ],
       },
     ],
   },
   five: {
-    title: "Project Five",
-    meta: "[Role] — [Year]",
+    title: "Universal Works",
+    meta: "Menswear Design · Collaboration",
+    tags: ["Collaboration", "Menswear"],
     overview:
-      "[ Placeholder — replace with the Project Five overview. Add tags and a story array to build out the case study. ]",
+      "This Universal Works Collaboration was a group project with the brand, culminating in a presentation to the senior team at Universal Works. Titled ‘Progressive Functions’, the project was inspired by military menswear and functional clothing, reinterpreting these influences through the brand’s relaxed, utility-focused aesthetic. As part of the team, I contributed to a considered capsule of denim, shirting and outerwear, taking designs from initial research and material exploration through to finished, wearable garments.",
+    text:
+      "I was involved in developing the collection from concept to completion, contributing to pattern drafting, fit refinement and the construction and detailing of each piece. Every design decision was informed by Universal Works’ ethos of functional, enduring clothing, resulting in a collection that felt both authentic to the brand and reflective of our collective design perspective.",
+    story: [
+      {
+        type: "intro",
+        image: { src: uwImg("IMG_7199.jpg"), arch: true, position: "center 20%" },
+      },
+      {
+        // Portfolio title board, full-width and centered, directly under the intro.
+        type: "columns",
+        columns: [
+          { flex: 1, images: [{ src: uwImg("porfolio.jpg"), arch: true }] },
+        ],
+      },
+      {
+        // Logo (left) · swatch+lookbook stack · flat+phone stack.
+        // Columns top-align so the two image stacks sit level with each other.
+        type: "columns",
+        marginTop: "1rem",
+        columns: [
+          {
+            flex: 1.3,
+            align: "center",
+            images: [
+              { src: uwImg("logouw.png"), arch: false, maxWidth: "546px", alignX: "left" },
+              { src: uwImg("pattern.png") + "?v=2", arch: false, maxWidth: "460px", opacity: 0.2, marginTop: "2.5rem" },
+            ],
+          },
+          {
+            flex: 1,
+            images: [
+              { src: uwImg("swatch.JPG"), arch: true },
+              { src: uwImg("7.jpg"), arch: true },
+            ],
+          },
+          {
+            flex: 1,
+            images: [
+              { src: uwImg("flat.JPG"), arch: true },
+              { src: uwImg("phoneuw-transparent.png"), arch: false },
+            ],
+          },
+        ],
+      },
+      {
+        // Caption under the brand-identity section.
+        type: "text",
+        text: "Working as a team we decided on a colour palette and final materials for the collection.",
+      },
+      {
+        // Denim waistband detail · seed-pocket sustainability detail.
+        type: "pair",
+        tall: true,
+        images: [
+          { src: uwImg("IMG_8908.JPG"), arch: true },
+          { src: uwImg("IMG_8852.jpg"), arch: true },
+        ],
+      },
+      {
+        // In progress: shirt on the stand · finished wide-leg jeans.
+        type: "columns",
+        columns: [
+          { flex: 1, align: "center", images: [{ src: uwImg("IMG_8904.JPG"), arch: true }] },
+          { flex: 1, align: "center", images: [{ src: uwImg("IMG_7220.jpg"), arch: true, position: "center 30%" }] },
+        ],
+      },
+      {
+        type: "text",
+        text: "I drafted the full pattern set and technical drawings myself, translating each design into production-ready specifications.",
+      },
+      {
+        // Coloured technical flats of the jeans (background removed).
+        type: "columns",
+        marginTop: "1rem",
+        columns: [
+          { flex: 1, images: [{ src: uwImg("jeans-flats-transparent.png"), arch: false }] },
+        ],
+      },
+    ],
   },
 };
 
@@ -467,6 +581,19 @@ function buildStoryImage(image, altText) {
   wrap.href = image.src;
   wrap.style.display = "block";
   wrap.style.height = "100%";
+  // Let a scaled-up image (zoom > 1) show in full instead of being cropped by
+  // the arch wrapper's clip. The image keeps its own rounded corners via CSS.
+  if (image.noClip) {
+    wrap.style.overflow = "visible";
+  }
+  // Cap the rendered width and position the image within its cell/column
+  // (centered by default; alignX "left" | "right" to push it to a side).
+  if (image.maxWidth) {
+    wrap.style.maxWidth = image.maxWidth;
+    const ax = image.alignX || "center";
+    wrap.style.marginLeft = ax === "left" ? "0" : "auto";
+    wrap.style.marginRight = ax === "right" ? "0" : "auto";
+  }
 
   const idx = activeGallery.length;
   activeGallery.push(image.src);
@@ -487,6 +614,12 @@ function buildStoryImage(image, altText) {
   }
   if (image.zoom) {
     img.style.transform = `scale(${image.zoom})`;
+  }
+  if (image.opacity != null) {
+    img.style.opacity = image.opacity;
+  }
+  if (image.marginTop) {
+    wrap.style.marginTop = image.marginTop;
   }
   wrap.appendChild(img);
 
@@ -517,6 +650,10 @@ function openModal(id) {
     project.story.forEach((row) => {
       const rowEl = document.createElement("div");
       rowEl.className = "case-story-row";
+
+      // Optional per-row spacing overrides (any row type).
+      if (row.marginTop) rowEl.style.marginTop = row.marginTop;
+      if (row.marginBottom) rowEl.style.marginBottom = row.marginBottom;
 
       if (row.type === "intro") {
         rowEl.classList.add("case-story-intro");
@@ -645,6 +782,33 @@ function openModal(id) {
       } else if (row.type === "text") {
         rowEl.classList.add("case-story-text");
         rowEl.textContent = row.text;
+      } else if (row.type === "youtube") {
+        // Inline, responsive 16:9 YouTube player.
+        rowEl.classList.add("case-story-embed");
+        const frame = document.createElement("div");
+        frame.className =
+          "case-embed-frame" + (row.arch === false ? "" : " case-arch");
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube.com/embed/${row.videoId}`;
+        iframe.title = row.title || project.title;
+        iframe.loading = "lazy";
+        iframe.allow =
+          "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.setAttribute("frameborder", "0");
+        frame.appendChild(iframe);
+        rowEl.appendChild(frame);
+      } else if (row.type === "link") {
+        // Centered clickable link, styled like a caption.
+        rowEl.classList.add("case-story-text");
+        const a = document.createElement("a");
+        a.className = "case-story-link";
+        a.href = row.href;
+        a.textContent = row.text;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        rowEl.appendChild(a);
       } else if (row.type === "video") {
         // Looping, muted, autoplay video with its original white background
         // stripped to transparency (per-frame flood-fill baked into the files).
