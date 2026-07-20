@@ -189,7 +189,7 @@ const projects = {
             align: "center",
             offsetX: "-12%",
             images: [
-              { src: foldImg("fold 4.png"), arch: true, zoom: 0.9 },
+              { src: foldImg("fold 4.PNG"), arch: true, zoom: 0.9 },
             ],
           },
         ],
