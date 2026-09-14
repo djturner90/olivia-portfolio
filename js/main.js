@@ -424,7 +424,7 @@ const projects = {
       {
         // Caption for the film.
         type: "text",
-        text: "As part of this project I produced a short film. I filmed, edited and directed this film. See above",
+        text: "As part of this project I produced a short film. I filmed and directed this film, and edited it using CapCut. See above",
       },
       {
         // Close-up of the OBO label sewn into the mussel-shell garment.
