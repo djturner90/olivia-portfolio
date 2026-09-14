@@ -104,7 +104,7 @@ body {
 }
 
 .bio-name {
-  font-size: clamp(9rem, 28.5vw, 21rem);
+  font-size: clamp(4.5rem, 10.5vw, 11rem);
   font-weight: 500;
   font-style: italic;
   line-height: 0.95;
@@ -114,14 +114,38 @@ body {
 }
 
 .bio-text {
-  max-width: 52ch;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.4rem;
+  max-width: 46ch;
+  font-size: 1.25rem;
   line-height: 1.5;
   color: var(--fg);
   opacity: 0.75;
-  margin: 2.5rem 0 0;
+  margin: 1.5rem auto 0;
+}
+
+/* "Explore work ↓" — underlined jump link down to the project grid */
+.bio-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.bio-cta-label {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.bio-cta-arrow {
+  animation: heart-line-arrow-bounce 2s ease-in-out infinite;
+}
+
+.bio-cta:hover .bio-cta-label {
+  text-decoration-thickness: 2px;
 }
 
 /* Marquee */
@@ -1075,11 +1099,11 @@ body {
   /* Scale the hero word down so it stops overflowing on tablets. The
      desktop clamp has a 9rem floor that is far too large below ~1000px. */
   .bio-name {
-    font-size: clamp(5.5rem, 19vw, 15rem);
+    font-size: clamp(3.5rem, 10.5vw, 6.5rem);
   }
 
   .bio-text {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -1107,8 +1131,8 @@ body {
     white-space: nowrap;
   }
 
-  /* Hero: shrink the giant "Portfolio" word so it fits within the
-     viewport instead of spilling off both edges, and tighten spacing. */
+  /* Hero: shrink the headline so it fits within the viewport (it wraps
+     onto two lines on phones), and tighten spacing. */
   .bio {
     min-height: 72vh;
     padding: 2.5rem 6vw 1rem;
@@ -1119,13 +1143,18 @@ body {
   }
 
   .bio-name {
-    font-size: clamp(3.75rem, 18vw, 8rem);
+    font-size: clamp(3.25rem, 17vw, 6rem);
     margin-bottom: 1rem;
   }
 
   .bio-text {
+    font-size: 1.1rem;
+    margin-top: 1.25rem;
+  }
+
+  .bio-cta {
     font-size: 1.2rem;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
 
   .marquee {
@@ -1297,11 +1326,11 @@ body {
   }
 
   .bio-name {
-    font-size: clamp(3rem, 17vw, 5rem);
+    font-size: clamp(2.75rem, 16vw, 4.5rem);
   }
 
   .bio-text {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
 }
 
