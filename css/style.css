@@ -1,50 +1,19 @@
+/* Shared palette for every page: blush background, burgundy headings,
+   plum-charcoal text, raspberry accents and deep plum dark sections. */
 :root {
-  --bg-start: #fdf1e2;
-  --bg-end: #f5c6c2;
-  --bg: #fbe3da;
-  --fg: #33513f;
-  --muted: #8a9182;
-  --accent: #33513f;
-  --marquee-color: #e8628f;
-  --card-bg: #fffdf9;
-  --about-line: #c96ca4; /* matched to the pink shorts in me.JPEG */
-}
-
-/* Homepage palette: blush background, burgundy headline, plum-charcoal
-   supporting text, raspberry skills and a deep plum project section.
-   Scoped to the homepage so the About page keeps its own colours. */
-body.home {
-  --bg-start: #f9efec;
-  --bg-end: #f3e3e5;
+  --bg-start: #fcf0f0;
+  --bg-mid: #fceaea;
+  --bg-end: #fbe3e4;
+  --bg: #fceaea;
   --fg: #352b35;
-  --heading: #8c2946;
-  --marquee-color: #ac365c;
-  --section-bg: #30202c;
-}
-
-body.home .site-header {
-  border-bottom-color: rgba(53, 43, 53, 0.14);
-}
-
-/* logo-plum.png is already plum on transparent, so no blending needed */
-body.home .site-logo {
-  mix-blend-mode: normal;
-}
-
-body.home .site-nav a {
-  opacity: 1;
-}
-
-body.home .site-nav a:hover {
-  opacity: 0.7;
-}
-
-body.home .bio-name {
-  color: var(--heading);
-}
-
-body.home .bio-text {
-  opacity: 1;
+  --fg-line: rgba(53, 43, 53, 0.14);
+  --heading: #941f42;
+  --muted: #6e636d;
+  --accent: #b01050;
+  --marquee-color: #b01050;
+  --section-bg: #311f2b;
+  --card-bg: #fffdf9;
+  --about-line: var(--accent);
 }
 
 * {
@@ -58,7 +27,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, var(--bg-start), var(--bg-end)) fixed;
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-mid), var(--bg-end)) fixed;
   color: var(--fg);
   font-family: "Cormorant Garamond", "Times New Roman", Georgia, serif;
   position: relative;
@@ -84,14 +53,15 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 8vw;
-  border-bottom: 1px solid rgba(51, 81, 63, 0.18);
+  border-bottom: 1px solid var(--fg-line);
 }
 
+/* logo-plum.png is plum on transparent: no blend modes or filters, so the
+   artwork shows exactly #352B35 */
 .site-logo {
   height: 4rem;
   width: auto;
   display: block;
-  mix-blend-mode: multiply;
 }
 
 .site-nav {
@@ -107,12 +77,12 @@ body {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.85;
+  opacity: 1;
   transition: opacity 0.2s ease;
 }
 
 .site-nav a:hover {
-  opacity: 1;
+  opacity: 0.7;
 }
 
 /* Bio */
@@ -150,7 +120,7 @@ body {
   line-height: 0.95;
   letter-spacing: -0.01em;
   margin: -0.05em 0 0.5rem;
-  color: var(--fg);
+  color: var(--heading);
 }
 
 .bio-text {
@@ -158,7 +128,6 @@ body {
   font-size: 1.25rem;
   line-height: 1.5;
   color: var(--fg);
-  opacity: 0.75;
   margin: 1rem 0 0;
 }
 
@@ -414,7 +383,7 @@ body {
   justify-content: center;
   text-align: center;
   padding: 2rem;
-  background: #faf6f0;
+  background: var(--bg-start);
   border: 2px dashed rgba(0, 0, 0, 0.2);
 }
 
@@ -1410,7 +1379,7 @@ body {
   inset: 0;
   background:
     url("../me.JPEG") center 42% / cover no-repeat,
-    linear-gradient(135deg, #efd9c6, #e7bfb4);
+    linear-gradient(135deg, var(--bg-start), var(--bg-end));
 }
 
 .about-wave {
@@ -1506,7 +1475,7 @@ body {
   transform: translateX(-50%) scaleY(1);
 }
 
-/* Black label box with warm cream text */
+/* Deep plum label box with blush text */
 .about-dot-label {
   position: absolute;
   left: 0;
@@ -1515,8 +1484,8 @@ body {
   max-width: 15rem;
   text-align: center;
   line-height: 1.25;
-  background: #111;
-  color: #f3e6cf;
+  background: var(--section-bg);
+  color: var(--bg-start);
   padding: 0.95rem 1.6rem;
   border-radius: 5px;
   font-size: 2rem;
@@ -1571,6 +1540,7 @@ body {
   font-size: clamp(2.6rem, 6vw, 4.2rem);
   font-weight: 600;
   margin: 0 0 1.5rem;
+  color: var(--heading);
 }
 
 .about-intro p {
@@ -1582,7 +1552,7 @@ body {
 
 /* Let's Connect — dark closing block (echoes the site's dark sections) */
 .about-connect {
-  background: #000;
+  background: var(--section-bg);
   color: #f5f2ec;
   padding: 6rem 8vw 8rem;
 }
