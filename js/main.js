@@ -99,6 +99,16 @@ const projects = {
         ],
       },
       {
+        // wild.JPG is portrait, so it goes in a single column at its natural
+        // shape (a "solo" row is a fixed-height band and would crop it).
+        type: "columns",
+        columns: [
+          {
+            images: [{ src: imgPath("wild.JPG"), arch: true, maxWidth: "520px" }],
+          },
+        ],
+      },
+      {
         type: "solo",
         image: { src: storyImg("8.png"), arch: true },
       },
