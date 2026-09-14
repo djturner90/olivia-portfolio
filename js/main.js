@@ -99,12 +99,20 @@ const projects = {
         ],
       },
       {
-        // wild.JPG is portrait, so it goes in a single column at its natural
-        // shape (a "solo" row is a fixed-height band and would crop it).
+        // "Wear the Wild" poster (left) · mussel-shell hoop with its white
+        // background removed (right). Both portrait; column flex matches each
+        // image's width/height ratio (0.8 and 0.74) so they sit at equal height.
         type: "columns",
         columns: [
           {
-            images: [{ src: imgPath("wild.JPG"), arch: true, maxWidth: "520px" }],
+            flex: 0.8,
+            align: "center",
+            images: [{ src: imgPath("wild.JPG"), arch: true }],
+          },
+          {
+            flex: 0.74,
+            align: "center",
+            images: [{ src: imgPath("muscles-transparent.png"), arch: false }],
           },
         ],
       },
