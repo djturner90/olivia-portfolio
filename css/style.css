@@ -557,11 +557,12 @@ body {
   opacity: 0.75;
 }
 
+/* logo-blush.png is already blush on transparent — no filter, so the artwork
+   shows exactly #FCEAEA against the black header */
 .case-logo {
   height: 4rem;
   width: auto;
   display: block;
-  filter: invert(1) brightness(1.6);
 }
 
 .case-topbar-right {
@@ -570,8 +571,13 @@ body {
   gap: 2rem;
 }
 
+/* Project pages: blush logo and nav on the black header */
 .case-topbar .site-nav a {
-  color: #f5f2ec;
+  color: var(--bg-mid);
+}
+
+.case-topbar .site-nav a.is-current {
+  border-bottom-color: var(--bg-mid);
 }
 
 .case-hero {
@@ -1396,11 +1402,14 @@ body {
 }
 
 /* Hero photo with the interactive story line drawn over it */
+/* Height follows the screen height, leaving room for the header (~5–7rem),
+   the intro's 6rem top padding, the heading itself and a little breathing
+   room, so "Hi, I'm Olivia" is visible on load. Phones and touch devices
+   override this below. */
 .about-hero {
   position: relative;
   width: 100%;
-  height: 82vh;
-  min-height: 520px;
+  height: clamp(360px, calc(100vh - 21rem), 82vh);
   overflow: hidden;
 }
 
@@ -1487,7 +1496,8 @@ body {
   background: var(--about-line);
   transform: translateX(-50%) scaleY(0);
   opacity: 0;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  /* slower fade-out once a hover label's 2s hold ends */
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .about-dot--top::before {
@@ -1500,9 +1510,12 @@ body {
   transform-origin: top;
 }
 
-.about-dot:hover::before {
+/* Mouse/trackpad reveal. about.js adds .is-hovered straight away and removes
+   it 2s after the pointer leaves both the hit zone and the label. */
+.about-dot.is-hovered::before {
   opacity: 1;
   transform: translateX(-50%) scaleY(1);
+  transition-duration: 0.2s;
 }
 
 /* Deep plum label box with blush text */
@@ -1524,7 +1537,7 @@ body {
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .about-dot-label--top {
@@ -1535,9 +1548,12 @@ body {
   top: 48px;
 }
 
-.about-dot:hover .about-dot-label {
+.about-dot.is-hovered .about-dot-label {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+  transition-duration: 0.2s;
+  /* hovering the visible label itself keeps it open */
+  pointer-events: auto;
 }
 
 /* Auto-revealed state (used on touch devices, driven by js in sequence) —
@@ -1715,6 +1731,12 @@ html.is-touch .about-traits {
 
 html.is-touch .about-dot-hit {
   pointer-events: none;
+}
+
+/* Keep the auto-play fade speed on touch as it was */
+html.is-touch .about-dot::before,
+html.is-touch .about-dot-label {
+  transition-duration: 0.2s;
 }
 
 /* Taller hero + smaller label boxes on touch so the auto-revealed words have

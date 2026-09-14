@@ -100,6 +100,30 @@ if (isTouch) {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(start);
   else start();
 } else {
+  // Mouse/trackpad: reveal a label straight away, keep it while the pointer is
+  // over its hit zone or the label, then hold it 2s after leaving both before
+  // it fades. Each dot has its own timer; returning cancels it.
+  const HOVER_HOLD = 2000;
+  dotEls.forEach((dot) => {
+    let hideTimer = null;
+    const show = (e) => {
+      if (e.pointerType === "touch") return;
+      clearTimeout(hideTimer);
+      dot.classList.add("is-hovered");
+    };
+    const scheduleHide = (e) => {
+      if (e.pointerType === "touch") return;
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => dot.classList.remove("is-hovered"), HOVER_HOLD);
+    };
+    const hit = dot.querySelector(".about-dot-hit");
+    const label = dot.querySelector(".about-dot-label");
+    [hit, label].forEach((el) => {
+      el.addEventListener("pointerenter", show);
+      el.addEventListener("pointerleave", scheduleHide);
+    });
+  });
+
   const traitsWrap = document.getElementById("aboutTraits");
   if (traitsWrap) {
     labels.forEach((text) => {
