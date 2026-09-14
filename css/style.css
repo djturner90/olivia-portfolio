@@ -83,8 +83,9 @@ body {
 .bio {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
+  /* Same 8vw side padding as .projects, so the intro lines up with the grid */
   padding: clamp(1.5rem, 4vh, 3rem) 8vw clamp(1.5rem, 3.5vh, 2.5rem);
 }
 
@@ -97,7 +98,7 @@ body {
 
 .bio-eyebrow {
   margin: 0;
-  font-size: clamp(1.82rem, 3.64vw, 2.66rem);
+  font-size: clamp(1.55rem, 3.09vw, 2.26rem);
   font-weight: 400;
   color: var(--fg);
 }
@@ -118,7 +119,7 @@ body {
   line-height: 1.5;
   color: var(--fg);
   opacity: 0.75;
-  margin: 1rem auto 0;
+  margin: 1rem 0 0;
 }
 
 /* "Explore work ↓" — underlined jump link down to the project grid */
@@ -187,12 +188,20 @@ body {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
   color: var(--marquee-color);
 }
 
-.marquee-track span:not(:last-child)::after {
-  display: none;
+/* Bullet after every word, including the last, so the loop point is
+   separated too. Its box is exactly the old 3rem gap, so each set keeps
+   the same width and the scroll speed is unchanged. */
+.marquee-track span::after {
+  content: "•";
+  display: inline-block;
+  width: 3rem;
+  text-align: center;
+  font-size: 0.7em;
 }
 
 @keyframes marquee {
@@ -1146,7 +1155,7 @@ body {
   }
 
   .bio-eyebrow {
-    font-size: clamp(1.4rem, 6vw, 2rem);
+    font-size: clamp(1.19rem, 5.1vw, 1.7rem);
   }
 
   .bio-name {
@@ -1168,8 +1177,8 @@ body {
     padding: 0.6rem 0;
   }
 
-  .marquee-track span {
-    padding: 0 1rem;
+  .marquee-track span::after {
+    width: 2rem;
   }
 
   .dark-section {
