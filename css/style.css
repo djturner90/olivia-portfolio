@@ -10,6 +10,43 @@
   --about-line: #c96ca4; /* matched to the pink shorts in me.JPEG */
 }
 
+/* Homepage palette: blush background, burgundy headline, plum-charcoal
+   supporting text, raspberry skills and a deep plum project section.
+   Scoped to the homepage so the About page keeps its own colours. */
+body.home {
+  --bg-start: #f9efec;
+  --bg-end: #f3e3e5;
+  --fg: #352b35;
+  --heading: #8c2946;
+  --marquee-color: #ac365c;
+  --section-bg: #30202c;
+}
+
+body.home .site-header {
+  border-bottom-color: rgba(53, 43, 53, 0.14);
+}
+
+/* logo-plum.png is already plum on transparent, so no blending needed */
+body.home .site-logo {
+  mix-blend-mode: normal;
+}
+
+body.home .site-nav a {
+  opacity: 1;
+}
+
+body.home .site-nav a:hover {
+  opacity: 0.7;
+}
+
+body.home .bio-name {
+  color: var(--heading);
+}
+
+body.home .bio-text {
+  opacity: 1;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -220,13 +257,13 @@ body {
 .dark-section {
   --cap-radius: 56px;
   position: relative;
-  background: #000;
+  background: var(--section-bg, #000);
   color: #f5f2ec;
 }
 
-/* Two black corner pieces just above the dark section give the pink area
-   rounded bottom corners. The pink is the page background showing through,
-   so there's no seam against the cursor glow. */
+/* Two corner pieces in the section colour, just above the dark section, give
+   the light area rounded bottom corners. The light colour is the page
+   background showing through, so there's no seam against the cursor glow. */
 .dark-section::before,
 .dark-section::after {
   content: "";
@@ -239,12 +276,12 @@ body {
 
 .dark-section::before {
   left: 0;
-  background: radial-gradient(circle at 100% 0, transparent calc(var(--cap-radius) - 0.5px), #000 var(--cap-radius));
+  background: radial-gradient(circle at 100% 0, transparent calc(var(--cap-radius) - 0.5px), var(--section-bg, #000) var(--cap-radius));
 }
 
 .dark-section::after {
   right: 0;
-  background: radial-gradient(circle at 0 0, transparent calc(var(--cap-radius) - 0.5px), #000 var(--cap-radius));
+  background: radial-gradient(circle at 0 0, transparent calc(var(--cap-radius) - 0.5px), var(--section-bg, #000) var(--cap-radius));
 }
 
 /* Projects */
