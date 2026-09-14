@@ -1017,3 +1017,36 @@ function animateGlow() {
 }
 
 animateGlow();
+
+// Skills marquee: the CSS animation slides each track left by half its width,
+// so the track needs two identical halves, each at least as wide as the screen,
+// or blank space scrolls into view. Repeat the word list until that holds, and
+// scale the duration so the scroll speed stays the same however many copies.
+const marqueeTracks = [...document.querySelectorAll(".marquee-track")].map((track) => ({
+  track,
+  words: [...track.children],
+  secondsPerSet: track.classList.contains("marquee-track--reverse") ? 88 : 76,
+  sets: 0,
+}));
+
+function fillMarquees() {
+  marqueeTracks.forEach((m) => {
+    const setWidth = m.sets
+      ? m.track.scrollWidth / (m.sets * 2)
+      : m.track.scrollWidth;
+    if (!setWidth) return;
+    const sets = Math.max(1, Math.ceil(window.innerWidth / setWidth));
+    if (sets === m.sets) return;
+    const half = [];
+    for (let i = 0; i < sets; i++) {
+      half.push(...m.words.map((w) => w.cloneNode(true)));
+    }
+    m.track.replaceChildren(...half, ...half.map((w) => w.cloneNode(true)));
+    m.track.style.animationDuration = `${m.secondsPerSet * sets}s`;
+    m.sets = sets;
+  });
+}
+
+fillMarquees();
+document.fonts.ready.then(fillMarquees);
+window.addEventListener("resize", fillMarquees);
