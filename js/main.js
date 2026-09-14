@@ -112,7 +112,8 @@ const projects = {
           {
             flex: 0.74,
             align: "center",
-            images: [{ src: imgPath("muscles-transparent.png"), arch: false }],
+            // 85% of its column = 15% smaller, centred beside the poster
+            images: [{ src: imgPath("muscles-transparent.png"), arch: false, maxWidth: "85%" }],
           },
         ],
       },
