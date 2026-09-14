@@ -167,6 +167,35 @@ body {
 }
 
 /* Marquee */
+/* Homepage light area (intro + skills). Rounded, clipped box so the cursor
+   spotlight can't reach the header, the dark section or project images.
+   Transparent, so the page's blush gradient still shows through. */
+.hero-light {
+  --cap-radius: 56px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 0 0 var(--cap-radius) var(--cap-radius);
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    38vw circle at var(--gx, 50%) var(--gy, 35%),
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0) 65%
+  );
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.hero-light.is-lit .hero-glow {
+  opacity: 1;
+}
+
 /* Sits above the dark section's corner pieces so the words stay on top */
 .marquee-group {
   position: relative;
@@ -1190,7 +1219,8 @@ body {
     width: 2rem;
   }
 
-  .dark-section {
+  .dark-section,
+  .hero-light {
     --cap-radius: 40px;
   }
 

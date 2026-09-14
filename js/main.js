@@ -993,25 +993,58 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && overlay.classList.contains("open")) closeModal();
 });
 
-// Reactive background: a soft highlight glow eases toward the cursor.
-const root = document.documentElement;
+// Spotlight: a soft highlight eases toward the cursor, but only inside the
+// light intro + skills area (.hero-light clips it). It fades in when a mouse
+// enters that area and fades out when it leaves. Touch input is ignored.
+const heroLight = document.querySelector(".hero-light");
+const heroGlow = document.querySelector(".hero-glow");
 
-let targetX = window.innerWidth / 2;
-let targetY = window.innerHeight / 2;
-let currentX = targetX;
-let currentY = targetY;
+let pointerX = null;
+let pointerY = null;
+let targetX = 0;
+let targetY = 0;
+let currentX = 0;
+let currentY = 0;
 
-window.addEventListener("mousemove", (e) => {
-  targetX = e.clientX;
-  targetY = e.clientY;
+function aimGlow() {
+  if (pointerX === null) return;
+  const rect = heroLight.getBoundingClientRect();
+  targetX = pointerX - rect.left;
+  targetY = pointerY - rect.top;
+}
+
+heroLight.addEventListener("pointerenter", (e) => {
+  if (e.pointerType === "touch") return;
+  pointerX = e.clientX;
+  pointerY = e.clientY;
+  aimGlow();
+  // Start at the cursor rather than sliding in from the last spot.
+  currentX = targetX;
+  currentY = targetY;
+  heroLight.classList.add("is-lit");
 });
+
+heroLight.addEventListener("pointermove", (e) => {
+  if (e.pointerType === "touch") return;
+  pointerX = e.clientX;
+  pointerY = e.clientY;
+  aimGlow();
+});
+
+heroLight.addEventListener("pointerleave", () => {
+  pointerX = null;
+  heroLight.classList.remove("is-lit");
+});
+
+// Scrolling moves the area under a still cursor, so re-aim.
+window.addEventListener("scroll", aimGlow, { passive: true });
 
 function animateGlow() {
   currentX += (targetX - currentX) * 0.06;
   currentY += (targetY - currentY) * 0.06;
 
-  root.style.setProperty("--mx", `${(currentX / window.innerWidth) * 100}%`);
-  root.style.setProperty("--my", `${(currentY / window.innerHeight) * 100}%`);
+  heroGlow.style.setProperty("--gx", `${currentX}px`);
+  heroGlow.style.setProperty("--gy", `${currentY}px`);
 
   requestAnimationFrame(animateGlow);
 }
