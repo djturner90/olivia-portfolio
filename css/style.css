@@ -86,7 +86,10 @@ body {
   align-items: flex-start;
   text-align: left;
   /* Same 8vw side padding as .projects, so the intro lines up with the grid */
-  padding: clamp(1.5rem, 4vh, 3rem) 8vw clamp(1.5rem, 3.5vh, 2.5rem);
+  /* Top trims a little on short screens to pay for the extra room below
+     "Explore work" (+12px short screens, up to +20px on tall ones). */
+  padding: clamp(1.25rem, 8vh - 2.5rem, 3rem) 8vw
+    calc(clamp(1.5rem, 3.5vh, 2.5rem) + clamp(12px, 1.8vh, 20px));
 }
 
 .bio-heading {
@@ -127,7 +130,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  margin-top: 1.25rem;
+  margin-top: calc(1.25rem + clamp(8px, 1.1vh, 12px));
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--fg);
@@ -1151,7 +1154,7 @@ body {
   /* Hero: shrink the headline so it fits within the viewport (it wraps
      onto two lines on phones), and tighten spacing. */
   .bio {
-    padding: 2.5rem 6vw 2rem;
+    padding: 2.5rem 6vw calc(2rem + 14px);
   }
 
   .bio-eyebrow {
@@ -1170,7 +1173,7 @@ body {
 
   .bio-cta {
     font-size: 1.2rem;
-    margin-top: 1.5rem;
+    margin-top: calc(1.5rem + 10px);
   }
 
   .marquee {
