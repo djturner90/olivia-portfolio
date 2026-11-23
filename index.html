@@ -40,59 +40,65 @@
     <section class="work wrap" id="work" aria-labelledby="workLabel">
       <div class="section-head">
         <h2 class="label" id="workLabel">Selected work</h2>
-        <span class="label label--muted">05</span>
       </div>
-      <!-- Each cover links to its own page in work/<slug>/. Keep this order the
-           same as PROJECT_ORDER in js/projects.js. The first two covers
-           (class "cover--lead") are shown larger. Cover images live in covers/
-           — <slug>.jpg, plus <slug>-hover.jpg which fades in on mouse hover. -->
+      <!-- Homepage: one featured project (large landscape image + text), then the
+           other projects in a grid — the first two at half width (square), the
+           next three at a third (4:5). Keep the order — and the "1 / 6" numbers — the same as
+           PROJECT_ORDER in js/projects.js (the featured project is 1).
+           Cover images live in covers/ — <slug>.jpg, plus <slug>-hover.jpg which
+           fades in on mouse hover. The featured project uses a landscape render, and its hover image is
+           the 3D model cutaway of the whole floorplan. -->
+      <a class="feature" href="work/reformer-room/">
+        <span class="feature-media">
+          <img src="project_reformer_room/studio-hero.jpg" alt="" />
+          <img class="cover-alt feature-plan" src="project_reformer_room/model-cutaway.jpg" alt="" loading="lazy" />
+        </span>
+        <span class="feature-text">
+          <span class="cover-num">1 / 6</span>
+          <span class="feature-title">The Reformer Room</span>
+          <span class="label label--muted">Interior Design · Spatial Design · Retail</span>
+          <span class="feature-desc">A concept reformer studio and members’ lounge for a luxury health club.</span>
+          <span class="feature-link">View project <span aria-hidden="true">→</span></span>
+        </span>
+      </a>
+
       <div class="work-grid">
-        <a class="cover cover--lead" href="work/fold/">
-          <span class="cover-media">
-            <img src="covers/fold.jpg" alt="" />
-            <img class="cover-alt" src="covers/fold-hover.jpg" alt="" loading="lazy" />
-          </span>
+        <a class="cover cover--half" href="work/fold/">
+          <span class="cover-media"><img src="covers/fold.jpg" alt="" loading="lazy" style="object-position: 50% 30%" /><img class="cover-alt" src="covers/fold-hover.jpg" alt="" loading="lazy" /></span>
           <span class="cover-info">
+            <span class="cover-num">2 / 6</span>
             <span class="cover-title">FÔLD</span>
             <span class="label label--muted">Branding · Product Design · Graphic Design</span>
           </span>
         </a>
-        <a class="cover cover--lead" href="work/guardians-of-the-ocean/">
-          <span class="cover-media">
-            <img src="covers/guardians-of-the-ocean.jpg" alt="" />
-            <img class="cover-alt" src="covers/guardians-of-the-ocean-hover.jpg" alt="" loading="lazy" />
-          </span>
+        <a class="cover cover--half" href="work/guardians-of-the-ocean/">
+          <span class="cover-media"><img src="covers/guardians-of-the-ocean.jpg" alt="" loading="lazy" style="object-position: 50% 30%" /><img class="cover-alt" src="covers/guardians-of-the-ocean-hover.jpg" alt="" loading="lazy" /></span>
           <span class="cover-info">
+            <span class="cover-num">3 / 6</span>
             <span class="cover-title">Guardians of the Ocean</span>
             <span class="label label--muted">Fashion Design · Sustainable Materials · Concept Development</span>
           </span>
         </a>
-        <a class="cover" href="work/oceans-by-olivia/">
-          <span class="cover-media">
-            <img src="covers/oceans-by-olivia.jpg" alt="" loading="lazy" style="object-position: 50% 0" />
-            <img class="cover-alt" src="covers/oceans-by-olivia-hover.jpg" alt="" loading="lazy" />
-          </span>
+        <a class="cover cover--third" href="work/oceans-by-olivia/">
+          <span class="cover-media"><img src="covers/oceans-by-olivia.jpg" alt="" loading="lazy" style="object-position: 50% 30%" /><img class="cover-alt" src="covers/oceans-by-olivia-hover.jpg" alt="" loading="lazy" /></span>
           <span class="cover-info">
+            <span class="cover-num">4 / 6</span>
             <span class="cover-title">OCEANS by OLIVIA</span>
             <span class="label label--muted">Branding · Marketing · Content Creation</span>
           </span>
         </a>
-        <a class="cover" href="work/universal-works/">
-          <span class="cover-media">
-            <img src="covers/universal-works.jpg" alt="" loading="lazy" />
-            <img class="cover-alt" src="covers/universal-works-hover.jpg" alt="" loading="lazy" />
-          </span>
+        <a class="cover cover--third" href="work/universal-works/">
+          <span class="cover-media"><img src="covers/universal-works.jpg" alt="" loading="lazy" style="object-position: 50% 30%" /><img class="cover-alt" src="covers/universal-works-hover.jpg" alt="" loading="lazy" /></span>
           <span class="cover-info">
+            <span class="cover-num">5 / 6</span>
             <span class="cover-title">Universal Works</span>
             <span class="label label--muted">Collaboration · Menswear · Concept Development</span>
           </span>
         </a>
-        <a class="cover" href="work/future-of-femininity/">
-          <span class="cover-media">
-            <img src="covers/future-of-femininity.jpg" alt="" loading="lazy" />
-            <img class="cover-alt" src="covers/future-of-femininity-hover.jpg" alt="" loading="lazy" />
-          </span>
+        <a class="cover cover--third" href="work/future-of-femininity/">
+          <span class="cover-media"><img src="covers/future-of-femininity.jpg" alt="" loading="lazy" style="object-position: 50% 30%" /><img class="cover-alt" src="covers/future-of-femininity-hover.jpg" alt="" loading="lazy" /></span>
           <span class="cover-info">
+            <span class="cover-num">6 / 6</span>
             <span class="cover-title">Future of Femininity</span>
             <span class="label label--muted">Fashion Design · Innovation · Concept Development</span>
           </span>

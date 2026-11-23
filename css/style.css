@@ -170,20 +170,68 @@ dd {
   scroll-margin-top: 104px; /* keep "Selected work" clear of the sticky header */
 }
 
+/* Featured project: a large landscape image with its text underneath. */
+.feature {
+  display: block;
+  padding-top: clamp(16px, 3vw, 40px);
+}
+
+.feature-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 12 / 5;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 44em;
+  padding-top: 20px;
+}
+
+.feature-title {
+  font-size: clamp(30px, 3.4vw, 50px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  transition: color 0.2s;
+}
+
+.feature-desc {
+  max-width: 30em;
+  font-size: 15px;
+  line-height: 1.55;
+  opacity: 0.8;
+}
+
+.feature-link {
+  align-self: flex-start;
+  margin-top: 8px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid currentColor;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+/* The other projects: two at half width (square), then three at a third (4:5). */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 56px var(--gap);
+  gap: clamp(48px, 6vw, 88px) var(--gutter);
+  margin-top: clamp(56px, 6vw, 96px);
 }
 
-/* First two (FÔLD, OCEANS by OLIVIA) lead at half width; the rest at a third.
-   All covers are 4:5 portrait. */
 .cover {
-  grid-column: span 2;
   display: block;
 }
-.cover--lead {
+.cover--half {
   grid-column: span 3;
+}
+.cover--third {
+  grid-column: span 2;
 }
 
 .cover-media {
@@ -193,8 +241,12 @@ dd {
   overflow: hidden;
   background: var(--panel);
 }
+.cover--half .cover-media {
+  aspect-ratio: 1 / 1;
+}
 
-.cover-media img {
+.cover-media img,
+.feature-media img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -203,32 +255,50 @@ dd {
   transition: opacity 0.5s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.cover-media .cover-alt {
+.cover-alt {
   opacity: 0;
+}
+
+/* Featured hover image: the whole-floor model cutaway, shown uncropped on
+   white (its own background colour) so no part of the plan is cut off. */
+.feature-media .feature-plan {
+  object-fit: contain;
+  background: #fff;
 }
 
 .cover-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding-top: 12px;
+  gap: 5px;
+  padding-top: 14px;
 }
 
 .cover-title {
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-size: clamp(18px, 1.5vw, 22px);
+  font-weight: 400;
+  letter-spacing: -0.015em;
   transition: color 0.2s;
 }
 
+.cover-num {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
 @media (hover: hover) {
-  .cover:hover .cover-media img {
+  .cover:hover .cover-media img,
+  .feature:hover .feature-media img {
     transform: scale(1.02);
   }
-  .cover:hover .cover-media .cover-alt {
+  .cover:hover .cover-alt,
+  .feature:hover .cover-alt {
     opacity: 1;
   }
-  .cover:hover .cover-title {
+  .cover:hover .cover-title,
+  .feature:hover .feature-title,
+  .feature:hover .feature-link {
     color: var(--accent);
   }
 }
@@ -700,21 +770,6 @@ dd {
 
 /* ─────────────────────────────── Tablet */
 @media (max-width: 960px) {
-  .work-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 40px var(--gap);
-  }
-  .cover {
-    grid-column: span 1;
-  }
-  /* FÔLD leads full width; the other four sit two by two. */
-  .cover:first-child {
-    grid-column: 1 / -1;
-  }
-  .cover:first-child .cover-media {
-    aspect-ratio: 3 / 2;
-  }
-
   .p-facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -745,11 +800,18 @@ dd {
     font-size: 11px;
   }
 
+  /* One column; the featured image becomes 4:3, the covers 4:5. */
+  .feature-media {
+    aspect-ratio: 4 / 3;
+  }
   .work-grid {
     grid-template-columns: 1fr;
   }
-  .cover:first-child .cover-media,
-  .cover-media {
+  .cover--half,
+  .cover--third {
+    grid-column: 1;
+  }
+  .cover--half .cover-media {
     aspect-ratio: 4 / 5;
   }
 

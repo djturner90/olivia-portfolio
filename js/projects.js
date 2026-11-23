@@ -59,8 +59,10 @@ const foldShop = (name) => enc("project_2_fold", name); // cream-background prod
 const femImg = (name) => enc("Project%203%20%28Future%20of%20Femininity%29", name);
 const oboImg = (name) => enc("Project%204%20%28OCEANS%20by%20OLIVIA%29", name);
 const uwImg = (name) => enc("Project%205%20%28Universal%20Works%29", name);
+const rrImg = (name) => enc("project_reformer_room", name); // The Reformer Room (web-sized copies)
 
 const PROJECT_ORDER = [
+  "reformer-room",
   "fold",
   "guardians-of-the-ocean",
   "oceans-by-olivia",
@@ -255,6 +257,88 @@ const PROJECTS = {
           { src: oboImg("Look book - 11-web.jpg"), alt: "Collected litter" },
           { src: oboImg("beach-cleanup-web.jpg"), alt: "Coastal litter pick" },
         ],
+      },
+    ],
+  },
+
+  // ───────────────────────────────────────────────────────────── The Reformer Room
+  // Concept interior. Assets are web-sized copies in project_reformer_room/;
+  // the full-resolution originals, film draft and DXF are kept outside the repo.
+  "reformer-room": {
+    title: "The Reformer Room",
+    categories: ["Interior Design", "Spatial Design", "Retail"],
+    cover: ROOT + "covers/reformer-room.jpg",
+    facts: [
+      ["Type", "Concept · Luxury Members’ Health Club"],
+      ["Space", "Reformer Studio & Lounge · 164 m²"],
+      ["Scope", "Concept · Space Planning · Materials · 3D Visualisation"],
+    ],
+    hero: { src: rrImg("studio-hero.jpg"), alt: "The Reformer Room studio, with ten FÔLD reformers beneath a softly lit ceiling tray" },
+    overview:
+      "The Reformer Room is a concept interior for a reformer Pilates studio and members’ lounge within a luxury health club — an exclusive wellness sanctuary blending mindful movement, luxury and tranquillity. It grows directly out of my live work as Lead Designer at FÔLD reformer: the studio is built around FÔLD reformers, and its retail wall showcases the grip socks and apparel I designed for the brand.",
+    contribution: [
+      "I took the space from first mood board to finished visuals — defining the concept and palette, planning the layout, specifying materials and joinery, and building a 3D model to test proportion, sightlines and light before producing the final renders.",
+      "Members arrive into a calm, residential lounge: a host and tea counter, an oat bouclé banquette and the FÔLD apparel wall. From there, a framed view draws them through to the studio, where ten reformers sit in two rows of five beneath a raised ceiling tray, with the garden windows beyond.",
+      "The palette pairs blush limewash and warm cork with oak slats, plum wool felt, oat bouclé, tan leather and brushed brass — soft and tactile, with the felt doubling as acoustic panelling.",
+    ],
+    contributionLink: { text: "See my FÔLD product work", href: ROOT + "work/fold/" },
+    finished: [
+      {
+        images: [{ src: rrImg("axis.jpg"), alt: "View down the centre of the studio between two rows of reformers" }],
+        caption: "The studio — two rows of FÔLD reformers framed by plum felt acoustic panels, under a raised tray with concealed perimeter lighting.",
+      },
+      {
+        images: [
+          { src: rrImg("reformer.jpg"), alt: "Reformer in oat upholstery and oak on cork flooring" },
+          { src: rrImg("reset.jpg"), alt: "Reset zone of mats and bolsters along the garden windows" },
+        ],
+        caption: "Oat upholstery, oak frames and cork flooring; a reset zone of mats and bolsters runs along the garden windows.",
+      },
+      {
+        images: [{ src: rrImg("arrival.jpg"), alt: "Lounge with host and tea counter, banquette and apparel wall" }],
+        caption: "Arrival — the host and tea counter, bouclé banquette and apparel wall set a calm, residential tone.",
+      },
+      {
+        type: "feature",
+        heading: "Where the concept meets live product",
+        text: "The retail wall connects the interior to my work at FÔLD. The grip socks and hoodies on display are the ÔWEAR designs I created, set on an oak panel with brass rails and warm under-shelf lighting so the product reads as part of the interior rather than an afterthought.",
+        image: { src: rrImg("apparel-wall.jpg"), alt: "FÔLD apparel wall of grip socks and hoodies on an oak panel" },
+      },
+      {
+        images: [
+          { src: rrImg("socks.jpg"), alt: "Close-up of FÔLD grip socks on brass pegs" },
+          { src: rrImg("hoodies.jpg"), alt: "FÔLD hoodies on a brass rail" },
+        ],
+      },
+      {
+        images: [
+          { src: rrImg("tea.jpg"), alt: "Fluted oak tea counter with brass tap" },
+          { src: rrImg("glimpse.jpg"), alt: "Glimpse from the lounge through to the studio" },
+        ],
+        caption: "Details — the fluted oak tea counter, and a glimpse from the lounge through to the studio.",
+      },
+    ],
+    development: [
+      {
+        images: [{ src: rrImg("mood-board.jpg"), alt: "The Reformer Room mood board and colour palette" }],
+        caption: "Mood board — concept imagery and palette",
+      },
+      {
+        images: [
+          { src: rrImg("materials-board.jpg"), alt: "Materials sample board" },
+          { src: rrImg("materials-detail.jpg"), alt: "Close-up of oak slats, plum felt and oat wool samples" },
+        ],
+        caption: "Materials sample board.",
+      },
+      {
+        images: [{ src: rrImg("ga-plan.svg"), alt: "General arrangement plan of the reformer studio and lounge, 1:100" }],
+      },
+      {
+        images: [
+          { src: rrImg("model-plan.jpg"), alt: "3D model, plan view" },
+          { src: rrImg("model-cutaway.jpg"), alt: "3D model, cutaway view" },
+        ],
+        caption: "3D model — plan and cutaway views, used to test layout, circulation and sightlines.",
       },
     ],
   },
