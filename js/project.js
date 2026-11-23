@@ -59,6 +59,7 @@ function buildImage(image, { eager = false } = {}) {
 function buildRow(row) {
   const type = row.type || "images";
   const wrap = el("div", "p-row p-row--" + type);
+  if (row.id) wrap.id = row.id;
 
   if (type === "images") {
     const imgs = el("div", "p-row-images" + (row.spaced ? " p-row-images--spaced" : ""));
@@ -248,3 +249,33 @@ lightbox.addEventListener("touchend", (e) => {
 });
 
 render();
+
+// Linking straight to a row (e.g. …/oceans-by-olivia/#campaign-film). The page
+// is built by script and images above the target change height as they load,
+// so scroll once it's built, then keep it in place while those images load —
+// until the page has finished loading or the visitor scrolls themselves.
+(function scrollToHash() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const target = id && document.getElementById(id);
+  if (!target) return;
+
+  // Load the images above the target straight away rather than on scroll.
+  main.querySelectorAll("img").forEach((img) => {
+    if (img.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING) img.loading = "eager";
+  });
+
+  let userMoved = false;
+  const stop = () => (userMoved = true);
+  ["wheel", "touchstart", "keydown", "mousedown"].forEach((ev) =>
+    window.addEventListener(ev, stop, { once: true, passive: true })
+  );
+  const align = () => {
+    if (!userMoved) target.scrollIntoView({ block: "start", behavior: "instant" });
+  };
+  align();
+  main.querySelectorAll("img").forEach((img) => img.addEventListener("load", align));
+  window.addEventListener("load", () => {
+    align();
+    setTimeout(align, 300);
+  });
+})();

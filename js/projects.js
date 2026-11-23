@@ -29,7 +29,8 @@
 //   { type: "youtube", videoId, title, caption }     embedded YouTube film
 //   { type: "link", text, href }                     external link
 //
-// Any row can take captionAbove: true to put its caption above it instead of below.
+// Any row can take captionAbove: true to put its caption above it instead of below,
+// and id: "some-name" so other pages can link straight to it (…/#some-name).
 //
 // IMAGES are either a path, or { src, alt, pad, white, maxWidth, scale }:
 //   pad: true      sits the image on a soft panel with breathing room
@@ -216,6 +217,7 @@ const PROJECTS = {
         title: "OCEANS by OLIVIA — campaign film",
         caption: "Campaign film — filmed, directed and edited by me.",
         captionAbove: true, // caption sits above the video
+        id: "campaign-film", // link target: ../oceans-by-olivia/#campaign-film
       },
     ],
     development: [
@@ -276,7 +278,7 @@ const PROJECTS = {
       "I also helped with the photography and videography for the collection, and I edited and created the campaign film, which can be seen on the OCEANS by OLIVIA project.",
     ],
     // Link shown under "My contribution".
-    contributionLink: { text: "Watch the campaign film", href: "../oceans-by-olivia/" },
+    contributionLink: { text: "Watch the campaign film", href: "../oceans-by-olivia/#campaign-film" },
     finished: [
       {
         images: [

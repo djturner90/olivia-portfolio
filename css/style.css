@@ -464,6 +464,11 @@ dd {
   padding-bottom: clamp(48px, 7vw, 104px);
 }
 
+/* Rows linked to directly (#id) stop clear of the sticky header. */
+.p-row[id] {
+  scroll-margin-top: 110px;
+}
+
 .p-row + .p-row {
   margin-top: var(--gap);
 }
