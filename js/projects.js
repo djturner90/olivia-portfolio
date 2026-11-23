@@ -277,9 +277,9 @@ const PROJECTS = {
     overview:
       "The Reformer Room is a concept interior for a reformer Pilates studio and members’ lounge within a luxury health club — an exclusive wellness sanctuary blending mindful movement, luxury and tranquillity. It grows directly out of my live work as Lead Designer at FÔLD reformer: the studio is built around FÔLD reformers, and its retail wall showcases the grip socks and apparel I designed for the brand.",
     contribution: [
-      "I took the space from first mood board to finished visuals — defining the concept and palette, planning the layout, specifying materials and joinery, and building a 3D model to test proportion, sightlines and light before producing the final renders.",
-      "Members arrive into a calm, residential lounge: a host and tea counter, an oat bouclé banquette and the FÔLD apparel wall. From there, a framed view draws them through to the studio, where ten reformers sit in two rows of five beneath a raised ceiling tray, with the garden windows beyond.",
-      "The palette pairs blush limewash and warm cork with oak slats, plum wool felt, oat bouclé, tan leather and brushed brass — soft and tactile, with the felt doubling as acoustic panelling.",
+      "I developed the space from the first mood board through to the final renders. I set the concept and colour palette, planned the layout, chose the materials and joinery, and built a 3D model to check proportions, sightlines and lighting along the way.",
+      "Members arrive in a calm lounge with a tea counter, a bouclé banquette and the FÔLD apparel wall, then walk through to the studio: ten reformers in two rows of five, under a raised ceiling with garden windows at the far end.",
+      "I kept the palette soft and tactile, with blush limewash, cork flooring, oak, brushed brass and plum wool felt, which also works as acoustic panelling.",
     ],
     contributionLink: { text: "See my FÔLD product work", href: ROOT + "work/fold/" },
     finished: [
